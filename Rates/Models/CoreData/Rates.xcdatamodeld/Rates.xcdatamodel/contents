@@ -10,6 +10,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Rate" representedClassName="Rate" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currencyCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <uniquenessConstraints>
@@ -20,6 +21,6 @@
     </entity>
     <elements>
         <element name="Currency" positionX="-391.95703125" positionY="-5.8984375" width="128" height="75"/>
-        <element name="Rate" positionX="-223.60546875" positionY="3.94140625" width="128" height="75"/>
+        <element name="Rate" positionX="-223.60546875" positionY="3.94140625" width="128" height="90"/>
     </elements>
 </model>

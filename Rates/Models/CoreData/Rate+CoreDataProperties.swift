@@ -22,7 +22,6 @@ extension Rate {
   
   @NSManaged public var value: NSDecimalNumber?
   @NSManaged public var currencyCode: String?
-  
+  @NSManaged public var active: Bool
 }
-
 
