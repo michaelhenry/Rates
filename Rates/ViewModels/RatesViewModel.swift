@@ -59,7 +59,7 @@ class RatesViewModel {
       fetchRequest: fetchRequest,
       managedObjectContext: managedObjectContext,
       sectionNameKeyPath: nil,
-      cacheName: "RateCache")
+      cacheName: nil)
   }
   
   /// Activate Data Changes
@@ -93,7 +93,7 @@ class RatesViewModel {
       switch result {
       case .success(let value):
         let context = weakSelf.managedObjectContext
-        context.mergePolicy = NSMergePolicy.overwrite
+        context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         context.perform {
           do {
             value.quotes.forEach {

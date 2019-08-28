@@ -11,16 +11,11 @@ import CoreData
 
 class RatesViewController:UIViewController {
   
-  lazy var tableView:UITableView = {
-    return UITableView(frame: .zero, style: .plain)
-  }()
+  @IBOutlet weak var tableView:UITableView!
+  @IBOutlet weak var inputField:UITextField!
+  @IBOutlet weak var currencyButton:UIButton!
   
   lazy var apiService = APIService()
-  
-  override func loadView() {
-    super.loadView()
-    view = tableView
-  }
   
   lazy var viewModel:RatesViewModel = {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -81,6 +76,16 @@ class RatesViewController:UIViewController {
     tableView.register(RateCell.self)
     tableView.dataSource = self
     tableView.delegate = self
+    
+    currencyButton.addTarget(
+      self,
+      action: #selector(RatesViewController.showCurrencies),
+      for: .touchUpInside)
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      barButtonSystemItem: .add,
+      target: self,
+      action: #selector(RatesViewController.showCurrencies))
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +96,14 @@ class RatesViewController:UIViewController {
   override func viewDidDisappear(_ animated: Bool) {
     viewModel.deactivate()
   }
+  
+  @objc func showCurrencies() {
+    let currenciesVC = CurrenciesViewController()
+    currenciesVC.delegate = self
+    present(UINavigationController(rootViewController: currenciesVC),
+            animated: true, completion: nil)
+  }
+  
 }
 
 extension RatesViewController:UITableViewDataSource {
@@ -122,5 +135,16 @@ extension RatesViewController:UITableViewDelegate {
     if let rate  = viewModel.rate(at: indexPath) {
       print("rate \(rate)")
     }
+  }
+}
+
+extension RatesViewController:CurrenciesViewControllerDelegate {
+  func currenciesVCDidCancel(_ currenciesVC: CurrenciesViewController) {
+    currenciesVC.dismiss(animated: true, completion: nil)
+  }
+  
+  func currenciesVC(_ currenciesVC: CurrenciesViewController, didSelect currency: Currency) {
+    print(currency)
+    currenciesVC.dismiss(animated: true, completion: nil)
   }
 }

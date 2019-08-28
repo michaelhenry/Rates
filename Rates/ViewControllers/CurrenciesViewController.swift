@@ -9,21 +9,22 @@
 import UIKit
 import CoreData
 
+protocol CurrenciesViewControllerDelegate:class {
+  
+  func currenciesVC(_ currenciesVC:CurrenciesViewController, didSelect currency:Currency)
+  func currenciesVCDidCancel(_ currenciesVC:CurrenciesViewController)
+}
+
 class CurrenciesViewController:UIViewController {
   
   let searchController = UISearchController(searchResultsController: nil)
   
+  weak var delegate:CurrenciesViewControllerDelegate?
+  
   lazy var tableView:UITableView = {
     return UITableView(frame: .zero, style: .plain)
   }()
-  
-  lazy var apiService = APIService()
-  
-  override func loadView() {
-    super.loadView()
-    view = tableView
-  }
-  
+
   lazy var viewModel:CurrenciesViewModel = {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       fatalError("AppDelegate must not be null!")
@@ -75,6 +76,11 @@ class CurrenciesViewController:UIViewController {
     })
   }()
   
+  override func loadView() {
+    super.loadView()
+    view = tableView
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     title = viewModel.title
@@ -88,6 +94,12 @@ class CurrenciesViewController:UIViewController {
     searchController.searchBar.delegate = self
     navigationItem.searchController = searchController
     definesPresentationContext = true
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      title: "Cancel",
+      style: .plain,
+      target: self,
+      action: #selector(CurrenciesViewController.didCancel))
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +140,7 @@ extension CurrenciesViewController:UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
     if let currency  = viewModel.currency(at: indexPath) {
       print("CURRENCY \(currency)")
+      delegate?.currenciesVC(self, didSelect: currency)
     }
   }
 }
@@ -138,5 +151,12 @@ extension CurrenciesViewController:UISearchBarDelegate {
     viewModel.filter(text: searchText) { [weak self] in
       self?.tableView.reloadData()
     }
+  }
+}
+
+extension CurrenciesViewController {
+  
+  @objc func didCancel() {
+    delegate?.currenciesVCDidCancel(self)
   }
 }

@@ -14,6 +14,7 @@ extension Rate {
   
   @nonobjc public class func fetchRequest() -> NSFetchRequest<Rate> {
     let request = NSFetchRequest<Rate>(entityName: "Rate")
+    request.predicate = NSPredicate(format: "active == true")
     request.fetchBatchSize = 30
     let nameSort = NSSortDescriptor(keyPath: \Rate.currencyCode, ascending: true)
     request.sortDescriptors = [nameSort]
