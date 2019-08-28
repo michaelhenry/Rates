@@ -84,17 +84,10 @@ class RatesViewController:UIViewController {
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
-      target: self,
-      action: #selector(RatesViewController.showCurrencies))
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    viewModel.activate()
-  }
-  
-  override func viewDidDisappear(_ animated: Bool) {
-    viewModel.deactivate()
+      target: self, action: #selector(RatesViewController.showCurrencies))
+    
+    inputField.text = "1"
+    inputField.keyboardType = .numberPad
   }
   
   @objc func showCurrencies() {
@@ -136,6 +129,15 @@ extension RatesViewController:UITableViewDelegate {
       print("rate \(rate)")
     }
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    switch editingStyle {
+    case .delete:
+      viewModel.delete(at: indexPath)
+    default:
+      break
+    }
+  }
 }
 
 extension RatesViewController:CurrenciesViewControllerDelegate {
@@ -145,6 +147,8 @@ extension RatesViewController:CurrenciesViewControllerDelegate {
   
   func currenciesVC(_ currenciesVC: CurrenciesViewController, didSelect currency: Currency) {
     print(currency)
+    guard let _code = currency.code else { return }
+    viewModel.activate(code: _code)
     currenciesVC.dismiss(animated: true, completion: nil)
   }
 }

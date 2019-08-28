@@ -20,7 +20,6 @@ class CurrenciesViewModel {
 
   private var fetchedResultsController: NSFetchedResultsController<Currency>
   private let managedObjectContext:NSManagedObjectContext
- 
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
   init(
@@ -50,13 +49,8 @@ class CurrenciesViewModel {
       managedObjectContext: managedObjectContext,
       sectionNameKeyPath: nil,
       cacheName: nil)
-  }
-  
-  /// Activate Data Changes
-  ///
-  /// - Parameter completion
-  func activate(completion: (() -> Void)? = nil) {
     fetchedResultsController.delegate = fetchResultDelegateWrapper
+    
     do {
       try fetchedResultsController.performFetch()
     } catch {
@@ -66,14 +60,8 @@ class CurrenciesViewModel {
     if self.numberOfItems == 0 {
       // Currencies should be fetched once,
       // because it's mostly like a static information that will not change for a long time.
-      self.fetchCurrencies(completion)
+      self.fetchCurrencies()
     }
-  }
-  
-  /// Deactivate Data Changes, especially on view Did disappear
-  /// We don't want to listen for data changes while the viewcontroller is not showing.
-  func deactivate() {
-    fetchedResultsController.delegate = nil
   }
   
   func fetchCurrencies(_ completion: (() -> Void)? = nil) {
@@ -126,13 +114,13 @@ class CurrenciesViewModel {
 
 extension CurrenciesViewModel {
 
+  /// Filtering the Currency list.
+  ///
+  /// - Parameters:
+  ///   - text
+  ///   - completion
   func filter(text: String = "", completion: (() -> Void)? = nil) {
-    
-    if text.isEmpty {
-      fetchedResultsController.fetchRequest.predicate = nil
-    } else {
-      fetchedResultsController.fetchRequest.predicate = NSPredicate(searchText: text)
-    }
+    fetchedResultsController.fetchRequest.predicate = NSPredicate(searchText: text)
     do {
       try fetchedResultsController.performFetch()
       completion?()

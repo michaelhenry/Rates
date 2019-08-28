@@ -60,28 +60,15 @@ class RatesViewModel {
       managedObjectContext: managedObjectContext,
       sectionNameKeyPath: nil,
       cacheName: nil)
-  }
-  
-  /// Activate Data Changes
-  ///
-  /// - Parameter completion
-  func activate(completion: (() -> Void)? = nil) {
+    
     fetchedResultsController.delegate = fetchResultDelegateWrapper
     do {
       try fetchedResultsController.performFetch()
     } catch {
       self.onError?(error)
     }
-    
-    if self.numberOfItems == 0 {
-      self.fetchRates(completion)
-    }
-  }
-  
-  /// Deactivate Data Changes, especially on view Did disappear
-  /// We don't want to listen for data changes while the viewcontroller is not showing.
-  func deactivate() {
-    fetchedResultsController.delegate = nil
+
+    fetchRates()
   }
   
   func fetchRates(_ completion: (() -> Void)? = nil) {
@@ -131,5 +118,33 @@ class RatesViewModel {
   func rate(at indexPath:IndexPath) -> Rate? {
     let result:NSFetchRequestResult = fetchedResultsController.object(at: indexPath)
     return result as? Rate
+  }
+  
+  func delete(at indexPath:IndexPath) {
+    let result:NSFetchRequestResult = fetchedResultsController.object(at: indexPath)
+    managedObjectContext.perform { [weak self] in
+      do {
+        (result as! Rate).active = false
+        try self?.managedObjectContext.save()
+      } catch {
+        print(error)
+      }
+    }
+  }
+  
+  func activate(code:String) {
+    let fetchRequest:NSFetchRequest<Rate> = Rate.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", code)
+    fetchRequest.fetchLimit = 1
+    let context = managedObjectContext
+    context.perform {
+      do {
+        let result = try context.fetch(fetchRequest)
+        result.first?.active = true
+        try context.save()
+      } catch {
+        print(error)
+      }
+    }
   }
 }

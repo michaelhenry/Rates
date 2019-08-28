@@ -101,15 +101,6 @@ class CurrenciesViewController:UIViewController {
       target: self,
       action: #selector(CurrenciesViewController.didCancel))
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    viewModel.activate()
-  }
-  
-  override func viewDidDisappear(_ animated: Bool) {
-    viewModel.deactivate()
-  }
 }
 
 extension CurrenciesViewController:UITableViewDataSource {
