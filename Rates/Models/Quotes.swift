@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct Quotes:Decodable, HasStatus, HasErrorDetail {
+struct Quotes:Decodable {
   
   var quotes:[String:Double]
-  var success: Bool
-  var error: ErrorDetail?
 }

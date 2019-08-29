@@ -1,14 +1,23 @@
 //
-//  UIViewController_Extensions.swift
+//  AlertShowable.swift
 //  Rates
 //
-//  Created by Michael Henry Pantaleon on 2019/08/28.
+//  Created by Michael Henry Pantaleon on 2019/08/29.
 //  Copyright © 2019 Michael Henry Pantaleon. All rights reserved.
 //
 
 import UIKit
 
-extension UIViewController {
+protocol AlertShowable {
+  
+  func showAlert(
+    title:String?,
+    message:String?,
+    animated:Bool,
+    actions:[UIAlertAction])
+}
+
+extension AlertShowable where Self:UIViewController {
   
   func showAlert(
     title:String?,
@@ -20,6 +29,9 @@ extension UIViewController {
       title: title,
       message: message,
       preferredStyle: .alert)
+    actions.forEach {
+      alert.addAction($0)
+    }
     present(alert, animated: animated)
   }
 }

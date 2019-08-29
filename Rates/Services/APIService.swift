@@ -16,21 +16,22 @@ class APIService {
   private var apiKey:String {
     // I do recommend to set the PRODUCTION API KEY via CI ENVIRONMENT Variable and
     // on Development Environment we provide a default so that
-    // the app will continue to work without any additional configuration.
+    // the app will continue to work without any additional configuration,
+    // only if this is a private repository.
     guard let _apiKey = Bundle.main
       .object(forInfoDictionaryKey: "API_KEY") as? String else {
-      return "0e95ff074fc3d9a7352cae4a4182224f"
+      return "0e95ff074fc3d9a7352cae4a4182224fx"
     }
     return _apiKey
   }
   
-  func fetchCurrencies(completion: @escaping(Result<Currencies, Error>) -> Void) {
+  func fetchCurrencies(completion: @escaping(Result<Currencies, RequestError>) -> Void) {
     let request = URLRequest(
       url: URL(string: "http://apilayer.net/api/list?access_key=\(apiKey)")!)
     requestCaller.call(request: request, completion: completion)
   }
   
-  func fetchLive(source:String = "USD", completion: @escaping(Result<Quotes, Error>) -> Void) {
+  func fetchLive(source:String = "USD", completion: @escaping(Result<Quotes, RequestError>) -> Void) {
     
     let request = URLRequest(
       url: URL(string: "http://apilayer.net/api/live?access_key=\(apiKey)")!)

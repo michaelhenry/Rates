@@ -146,9 +146,11 @@ extension RatesViewController:CurrenciesViewControllerDelegate {
   }
   
   func currenciesVC(_ currenciesVC: CurrenciesViewController, didSelect currency: Currency) {
-    print(currency)
     guard let _code = currency.code else { return }
-    viewModel.activate(code: _code)
-    currenciesVC.dismiss(animated: true, completion: nil)
+    currenciesVC.dismiss(animated: true) {[weak self] in
+      self?.viewModel.activate(code: _code)
+    }
   }
 }
+
+extension RatesViewController:AlertShowable {}

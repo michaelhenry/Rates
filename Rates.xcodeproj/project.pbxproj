@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A6606DBC23161AB600F25DCC /* HasStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DBB23161AB600F25DCC /* HasStatus.swift */; };
-		A6606DBE23161AC100F25DCC /* HasErrorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DBD23161AC100F25DCC /* HasErrorDetail.swift */; };
+		A655220D23178BE200852430 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220C23178BE200852430 /* RequestError.swift */; };
+		A655220F23178CB300852430 /* AlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220E23178CB300852430 /* AlertShowable.swift */; };
 		A6606DC023161B1000F25DCC /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DBF23161B1000F25DCC /* Currencies.swift */; };
 		A6606DC223161CE500F25DCC /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC123161CE500F25DCC /* Quotes.swift */; };
 		A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */; };
@@ -28,8 +28,7 @@
 		A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF023164EBB00F25DCC /* RateCell.swift */; };
 		A6606DF323164EBB00F25DCC /* RateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6606DF123164EBB00F25DCC /* RateCell.xib */; };
 		A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */; };
-		A6606DF72316798200F25DCC /* UIViewController_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF62316798200F25DCC /* UIViewController_Extensions.swift */; };
-		A6DCB3FE23158D3500FAF71F /* ErrorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3FD23158D3500FAF71F /* ErrorDetail.swift */; };
+		A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */; };
 		A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */; };
 		A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */; };
 		A6E189DB2316E1C4009F9DCE /* Rate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */; };
@@ -62,8 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A6606DBB23161AB600F25DCC /* HasStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasStatus.swift; sourceTree = "<group>"; };
-		A6606DBD23161AC100F25DCC /* HasErrorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasErrorDetail.swift; sourceTree = "<group>"; };
+		A655220C23178BE200852430 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		A655220E23178CB300852430 /* AlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertShowable.swift; sourceTree = "<group>"; };
 		A6606DBF23161B1000F25DCC /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
 		A6606DC123161CE500F25DCC /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesViewModel.swift; sourceTree = "<group>"; };
@@ -83,8 +82,7 @@
 		A6606DF023164EBB00F25DCC /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		A6606DF123164EBB00F25DCC /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
 		A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchResultControllerDelegateWrapper.swift; sourceTree = "<group>"; };
-		A6606DF62316798200F25DCC /* UIViewController_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Extensions.swift; sourceTree = "<group>"; };
-		A6DCB3FD23158D3500FAF71F /* ErrorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDetail.swift; sourceTree = "<group>"; };
+		A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
 		A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -133,11 +131,10 @@
 		A6606DBA23161A9200F25DCC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A6606DBB23161AB600F25DCC /* HasStatus.swift */,
-				A6606DBD23161AC100F25DCC /* HasErrorDetail.swift */,
 				A6606DD92316325800F25DCC /* NibLoadable.swift */,
 				A6606DDB2316327B00F25DCC /* Reusable.swift */,
 				A6606DDF231632CE00F25DCC /* Bindable.swift */,
+				A655220E23178CB300852430 /* AlertShowable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -160,15 +157,16 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A6606DE32316332D00F25DCC /* Cells */ = {
+		A6606DE32316332D00F25DCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A6F19C2C231567CD00DB8B17 /* Main.storyboard */,
 				A6606DE42316334300F25DCC /* CurrencyCell.swift */,
 				A6606DE52316334300F25DCC /* CurrencyCell.xib */,
 				A6606DF023164EBB00F25DCC /* RateCell.swift */,
 				A6606DF123164EBB00F25DCC /* RateCell.xib */,
 			);
-			path = Cells;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A6606DFA23167CA800F25DCC /* CoreData */ = {
@@ -188,7 +186,6 @@
 			children = (
 				A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */,
 				A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */,
-				A6606DF62316798200F25DCC /* UIViewController_Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,15 +214,14 @@
 			isa = PBXGroup;
 			children = (
 				A6F19C28231567CD00DB8B17 /* AppDelegate.swift */,
-				A6606DE32316332D00F25DCC /* Cells */,
 				A6E189CD2315A554009F9DCE /* Extensions */,
 				A6F19C5C23156AE000DB8B17 /* Models */,
 				A6606DBA23161A9200F25DCC /* Protocols */,
 				A6F19C5923156A8600DB8B17 /* Services */,
 				A6606DD623162C3800F25DCC /* ViewControllers */,
+				A6606DE32316332D00F25DCC /* Views */,
 				A6606DC32316277C00F25DCC /* ViewModels */,
 				A6F19C2A231567CD00DB8B17 /* ViewController.swift */,
-				A6F19C2C231567CD00DB8B17 /* Main.storyboard */,
 				A6F19C32231567CF00DB8B17 /* Assets.xcassets */,
 				A6F19C34231567CF00DB8B17 /* LaunchScreen.storyboard */,
 				A6F19C37231567CF00DB8B17 /* Info.plist */,
@@ -266,9 +262,10 @@
 			isa = PBXGroup;
 			children = (
 				A6606DFA23167CA800F25DCC /* CoreData */,
-				A6DCB3FD23158D3500FAF71F /* ErrorDetail.swift */,
+				A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */,
 				A6606DBF23161B1000F25DCC /* Currencies.swift */,
 				A6606DC123161CE500F25DCC /* Quotes.swift */,
+				A655220C23178BE200852430 /* RequestError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,24 +409,23 @@
 				A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */,
 				A6606DC023161B1000F25DCC /* Currencies.swift in Sources */,
 				A6606DDE231632AC00F25DCC /* UITableView_Extensions.swift in Sources */,
-				A6606DBE23161AC100F25DCC /* HasErrorDetail.swift in Sources */,
 				A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */,
 				A6606DE923163CBC00F25DCC /* RequestCaller.swift in Sources */,
 				A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */,
 				A6606DC223161CE500F25DCC /* Quotes.swift in Sources */,
-				A6DCB3FE23158D3500FAF71F /* ErrorDetail.swift in Sources */,
+				A655220F23178CB300852430 /* AlertShowable.swift in Sources */,
+				A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */,
 				A6606DEF23164E5F00F25DCC /* RatesViewController.swift in Sources */,
-				A6606DBC23161AB600F25DCC /* HasStatus.swift in Sources */,
 				A6606DD423162AF700F25DCC /* Currency+CoreDataClass.swift in Sources */,
 				A6F19C2B231567CD00DB8B17 /* ViewController.swift in Sources */,
 				A6606DDA2316325800F25DCC /* NibLoadable.swift in Sources */,
 				A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */,
 				A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */,
-				A6606DF72316798200F25DCC /* UIViewController_Extensions.swift in Sources */,
 				A6F19C66231576C300DB8B17 /* APIService.swift in Sources */,
 				A6F19C29231567CD00DB8B17 /* AppDelegate.swift in Sources */,
 				A6606DD523162AF700F25DCC /* Currency+CoreDataProperties.swift in Sources */,
 				A6606DE62316334300F25DCC /* CurrencyCell.swift in Sources */,
+				A655220D23178BE200852430 /* RequestError.swift in Sources */,
 				A6606DE22316331F00F25DCC /* UITableViewCell_Extensions.swift in Sources */,
 				A6606DED23164CCD00F25DCC /* RatesViewModel.swift in Sources */,
 				A6E189DB2316E1C4009F9DCE /* Rate+CoreDataProperties.swift in Sources */,

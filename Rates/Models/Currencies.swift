@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct Currencies:Decodable, HasStatus, HasErrorDetail {
+struct Currencies:Decodable {
   
   var currencies:[String:String]
-  var success: Bool
-  var error: ErrorDetail?
 }

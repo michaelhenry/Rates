@@ -130,7 +130,6 @@ extension CurrenciesViewController:UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     if let currency  = viewModel.currency(at: indexPath) {
-      print("CURRENCY \(currency)")
       delegate?.currenciesVC(self, didSelect: currency)
     }
   }
@@ -151,3 +150,5 @@ extension CurrenciesViewController {
     delegate?.currenciesVCDidCancel(self)
   }
 }
+
+extension CurrenciesViewController:AlertShowable {}
