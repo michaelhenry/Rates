@@ -10,14 +10,14 @@ import UIKit
 
 class RateCell: UITableViewCell, Bindable {
   
-  typealias T = Rate
+  typealias T = EquivalentRate
   
   @IBOutlet weak var codeLabel:UILabel!
   @IBOutlet weak var valueLabel:UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+    selectionStyle = .none
   }
   
   func bind(_ data: T) {

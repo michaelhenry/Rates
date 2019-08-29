@@ -11,7 +11,7 @@ import CoreData
 
 class CurrenciesViewModel {
   
-  let title = "Currencies"
+  let title = "Select Currency"
   
   private var isFetching:Bool = false
   

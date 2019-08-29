@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A655220D23178BE200852430 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220C23178BE200852430 /* RequestError.swift */; };
 		A655220F23178CB300852430 /* AlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220E23178CB300852430 /* AlertShowable.swift */; };
+		A655221123179F0E00852430 /* ConvertedRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655221023179F0E00852430 /* ConvertedRate.swift */; };
 		A6606DC023161B1000F25DCC /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DBF23161B1000F25DCC /* Currencies.swift */; };
 		A6606DC223161CE500F25DCC /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC123161CE500F25DCC /* Quotes.swift */; };
 		A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		A655220C23178BE200852430 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		A655220E23178CB300852430 /* AlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertShowable.swift; sourceTree = "<group>"; };
+		A655221023179F0E00852430 /* ConvertedRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedRate.swift; sourceTree = "<group>"; };
 		A6606DBF23161B1000F25DCC /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
 		A6606DC123161CE500F25DCC /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
 		A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesViewModel.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				A6606DBF23161B1000F25DCC /* Currencies.swift */,
 				A6606DC123161CE500F25DCC /* Quotes.swift */,
 				A655220C23178BE200852430 /* RequestError.swift */,
+				A655221023179F0E00852430 /* ConvertedRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6606DDC2316327B00F25DCC /* Reusable.swift in Sources */,
+				A655221123179F0E00852430 /* ConvertedRate.swift in Sources */,
 				A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */,
 				A6606DD82316313500F25DCC /* CurrenciesViewController.swift in Sources */,
 				A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */,

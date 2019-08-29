@@ -72,10 +72,12 @@ class RatesViewController:UIViewController {
     super.viewDidLoad()
     
     title = viewModel.title
-    tableView.rowHeight = UITableView.automaticDimension
+    tableView.rowHeight = 70
     tableView.register(RateCell.self)
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.separatorStyle = .none
+    tableView.keyboardDismissMode = .onDrag
     
     currencyButton.addTarget(
       self,
@@ -87,7 +89,19 @@ class RatesViewController:UIViewController {
       target: self, action: #selector(RatesViewController.showCurrencies))
     
     inputField.text = "1"
-    inputField.keyboardType = .numberPad
+    inputField.keyboardType = .numbersAndPunctuation
+    inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
+    
+  }
+}
+
+extension RatesViewController {
+  
+  @objc func textFieldDidChange(_ textField:UITextField) {
+    guard let text = textField.text else { return }
+    viewModel.updateDisplayData(referenceValue: Decimal(string: text) ?? 0.0) { [weak self] in
+      self?.tableView.reloadData()
+    }
   }
   
   @objc func showCurrencies() {
@@ -96,7 +110,6 @@ class RatesViewController:UIViewController {
     present(UINavigationController(rootViewController: currenciesVC),
             animated: true, completion: nil)
   }
-  
 }
 
 extension RatesViewController:UITableViewDataSource {
@@ -114,7 +127,7 @@ extension RatesViewController:UITableViewDataSource {
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell:RateCell = tableView.dequeue(RateCell.self)!
-    guard let rate = viewModel.rate(at: indexPath)
+    guard let rate = viewModel.item(at: indexPath)
       else { return UITableViewCell() }
     cell.bind(rate)
     return cell
@@ -122,13 +135,6 @@ extension RatesViewController:UITableViewDataSource {
 }
 
 extension RatesViewController:UITableViewDelegate {
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
-    if let rate  = viewModel.rate(at: indexPath) {
-      print("rate \(rate)")
-    }
-  }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     switch editingStyle {

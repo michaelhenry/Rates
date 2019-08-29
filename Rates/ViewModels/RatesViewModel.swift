@@ -29,6 +29,8 @@ class RatesViewModel {
  
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
+  private var referenceValue:Decimal = 1.0
+  
   init(
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
@@ -146,5 +148,18 @@ class RatesViewModel {
         print(error)
       }
     }
+  }
+  
+  func item(at indexPath:IndexPath) -> EquivalentRate? {
+    guard let obj = rate(at: indexPath) else { return nil }
+    return obj.equivalentRate(at: NSDecimalNumber(decimal: referenceValue))
+  }
+}
+
+extension RatesViewModel {
+  
+  func updateDisplayData(referenceValue: Decimal, completion: (() -> Void)? = nil) {
+    self.referenceValue = referenceValue
+    completion?()
   }
 }
