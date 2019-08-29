@@ -11,8 +11,7 @@ import Foundation
 class RequestCaller {
 
   private lazy var decoder = JSONDecoder()
-  private lazy var urlSession:URLSession = URLSession(
-    configuration: URLSessionConfiguration.default)
+  private let urlSession:URLSession = URLSession.shared
   
   /// A request call that provide Generic Decodable & HasStatus & HasErrorDetail model
   func call<Model:Decodable>(

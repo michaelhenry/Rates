@@ -56,12 +56,6 @@ class CurrenciesViewModel {
     } catch {
       self.onError?(error)
     }
-    
-    if self.numberOfItems == 0 {
-      // Currencies should be fetched once,
-      // because it's mostly like a static information that will not change for a long time.
-      self.fetchCurrencies()
-    }
   }
   
   func fetchCurrencies(_ completion: (() -> Void)? = nil) {
@@ -77,7 +71,7 @@ class CurrenciesViewModel {
         context.perform {
           do {
             value.currencies.forEach {
-              let c = Currency(context: context)
+              let c = Currency(ctx: context)
               c.code = $0.key
               c.name = $0.value
             }

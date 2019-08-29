@@ -23,6 +23,7 @@ class RatesViewModel {
   _ indexPath:IndexPath?,
   _ type: NSFetchedResultsChangeType,
   _ newIndexPath:IndexPath?) -> Void)?
+  private var onReloadVisibleData:(() -> Void)?
   
   private var fetchedResultsController: NSFetchedResultsController<Rate>
   private let managedObjectContext:NSManagedObjectContext
@@ -40,6 +41,7 @@ class RatesViewModel {
     _ type: NSFetchedResultsChangeType?,
     _ newIndexPath:IndexPath?) -> Void)? = nil,
     onDidChangeContent:(() -> Void)? = nil,
+    onReloadVisibleData:(() -> Void)? = nil,
     onError:((Error) -> Void)? = nil) {
     
     self.api = api
@@ -47,6 +49,7 @@ class RatesViewModel {
     self.onWillChangeContent = onWillChangeContent
     self.onDidChangeContent = onDidChangeContent
     self.onChange = onChange
+    self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
     fetchResultDelegateWrapper = NSFetchedResultsControllerDelegateWrapper(
@@ -69,8 +72,6 @@ class RatesViewModel {
     } catch {
       self.onError?(error)
     }
-
-    fetchRates()
   }
   
   func fetchRates(_ completion: (() -> Void)? = nil) {
@@ -86,7 +87,7 @@ class RatesViewModel {
         context.perform {
           do {
             value.quotes.forEach {
-              let r = Rate(context: context)
+              let r = Rate(ctx: context)
               // code will be like Source-Target like `USDGBP`
               // so let's clean the data before saving to our database since we only support 1 conversion at a time
               r.currencyCode = String($0.key.suffix(3))
@@ -134,20 +135,21 @@ class RatesViewModel {
     }
   }
   
-  func activate(code:String) {
-    let fetchRequest:NSFetchRequest<Rate> = Rate.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", code)
-    fetchRequest.fetchLimit = 1
-    let context = managedObjectContext
-    context.perform {
+  func activate(code:String, completion: (() -> Void)? = nil) {
+    managedObjectContext.perform { [weak self] in
       do {
-        let result = try context.fetch(fetchRequest)
-        result.first?.active = true
-        try context.save()
+        let fetchRequest:NSFetchRequest<Rate> = Rate.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", code)
+        fetchRequest.fetchLimit = 1
+        let result = try self?.managedObjectContext.fetch(fetchRequest)
+        result?.first?.active = true
+        try self?.managedObjectContext.save()
+        completion?()
       } catch {
         print(error)
       }
     }
+    
   }
   
   func item(at indexPath:IndexPath) -> EquivalentRate? {
@@ -158,8 +160,8 @@ class RatesViewModel {
 
 extension RatesViewModel {
   
-  func updateDisplayData(referenceValue: Decimal, completion: (() -> Void)? = nil) {
+  func update(referenceValue: Decimal, completion: (() -> Void)? = nil) {
     self.referenceValue = referenceValue
-    completion?()
+    onReloadVisibleData?()
   }
 }

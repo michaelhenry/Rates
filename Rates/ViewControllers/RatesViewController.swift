@@ -15,8 +15,6 @@ class RatesViewController:UIViewController {
   @IBOutlet weak var inputField:UITextField!
   @IBOutlet weak var currencyButton:UIButton!
   
-  lazy var apiService = APIService()
-  
   lazy var viewModel:RatesViewModel = {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       fatalError("AppDelegate must not be null!")
@@ -25,21 +23,20 @@ class RatesViewController:UIViewController {
       api: APIService.shared,
       managedObjectContext: appDelegate.persistentContainer.viewContext,
       onWillChangeContent: { [weak self] in
-        guard let weakSelf = self else { return }
-        weakSelf.tableView.beginUpdates()
+        self?.tableView.beginUpdates()
       },
       onChange: { [weak self] (indexPath, type, newIndexPath) in
         guard let weakSelf = self, let _type = type else { return }
         switch (_type) {
         case .insert:
           guard let _newIndexPath = newIndexPath else { return }
-          weakSelf.tableView.insertRows(at: [_newIndexPath], with: .none)
+          weakSelf.tableView.insertRows(at: [_newIndexPath], with: .fade)
         case .update:
           guard let _indexPath = indexPath else { return }
-          weakSelf.tableView.reloadRows(at: [_indexPath], with: .none)
+          weakSelf.tableView.reloadRows(at: [_indexPath], with: .fade)
         case .delete:
           guard let _indexPath = indexPath else { return }
-          weakSelf.tableView.deleteRows(at: [_indexPath], with: .none)
+          weakSelf.tableView.deleteRows(at: [_indexPath], with: .fade)
         case .move:
           guard let _indexPath = indexPath, let _newIndexPath = newIndexPath else { return }
           weakSelf.tableView.moveRow(at: _indexPath, to: _newIndexPath)
@@ -48,23 +45,26 @@ class RatesViewController:UIViewController {
         }
       },
       onDidChangeContent: { [weak self] in
-        guard let weakSelf = self else { return }
-        weakSelf.tableView.endUpdates()
+        self?.tableView.endUpdates()
+      },
+      onReloadVisibleData: { [weak self] in
+        self?.tableView.reloadData()
       },
       onError:  {[weak self] error in
         guard let weakSelf = self else { return }
-        weakSelf.showAlert(
-          title: "Error",
-          message: "\(error)",
-          actions: [
-            UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
-            UIAlertAction(
-              title: "Retry",
-              style: .default,
-              handler: { (action) in
-                weakSelf.viewModel.fetchRates()
-            }),
-          ])
+        weakSelf
+          .showAlert(
+            title: "Error",
+            message: "\(error)",
+            actions: [
+              UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
+              UIAlertAction(
+                title: "Retry",
+                style: .default,
+                handler: { (action) in
+                  weakSelf.viewModel.fetchRates()
+              }),
+            ])
     })
   }()
   
@@ -79,27 +79,26 @@ class RatesViewController:UIViewController {
     tableView.separatorStyle = .none
     tableView.keyboardDismissMode = .onDrag
     
-    currencyButton.addTarget(
-      self,
-      action: #selector(RatesViewController.showCurrencies),
-      for: .touchUpInside)
-    
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
       target: self, action: #selector(RatesViewController.showCurrencies))
+    
+    // TODO: Change the Default Currency
     
     inputField.text = "1"
     inputField.keyboardType = .numbersAndPunctuation
     inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
     
+    viewModel.fetchRates()
   }
 }
 
+// MARK: - Actions that can be done by the User
 extension RatesViewController {
   
   @objc func textFieldDidChange(_ textField:UITextField) {
     guard let text = textField.text else { return }
-    viewModel.updateDisplayData(referenceValue: Decimal(string: text) ?? 0.0) { [weak self] in
+    viewModel.update(referenceValue: Decimal(string: text) ?? 0.0) { [weak self] in
       self?.tableView.reloadData()
     }
   }
@@ -112,6 +111,7 @@ extension RatesViewController {
   }
 }
 
+// MARK: - UITableViewDataSource
 extension RatesViewController:UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -134,6 +134,7 @@ extension RatesViewController:UITableViewDataSource {
   }
 }
 
+// MARK: - UITableViewDelegate
 extension RatesViewController:UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -146,6 +147,7 @@ extension RatesViewController:UITableViewDelegate {
   }
 }
 
+// MARK: - CurrenciesViewControllerDelegate
 extension RatesViewController:CurrenciesViewControllerDelegate {
   func currenciesVCDidCancel(_ currenciesVC: CurrenciesViewController) {
     currenciesVC.dismiss(animated: true, completion: nil)
@@ -159,4 +161,5 @@ extension RatesViewController:CurrenciesViewControllerDelegate {
   }
 }
 
+// MARK: - Make this ViewController AlertShowable
 extension RatesViewController:AlertShowable {}

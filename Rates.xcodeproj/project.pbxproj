@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A64AA87D23180126008FB8C0 /* RequestMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AA8712317FA81008FB8C0 /* RequestMocker.swift */; };
+		A64AA87F23180534008FB8C0 /* mock-resources in Resources */ = {isa = PBXBuildFile; fileRef = A64AA87E23180534008FB8C0 /* mock-resources */; };
+		A64AA881231837DE008FB8C0 /* RatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */; };
 		A655220D23178BE200852430 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220C23178BE200852430 /* RequestError.swift */; };
 		A655220F23178CB300852430 /* AlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220E23178CB300852430 /* AlertShowable.swift */; };
 		A655221123179F0E00852430 /* ConvertedRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655221023179F0E00852430 /* ConvertedRate.swift */; };
@@ -29,6 +32,7 @@
 		A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF023164EBB00F25DCC /* RateCell.swift */; };
 		A6606DF323164EBB00F25DCC /* RateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6606DF123164EBB00F25DCC /* RateCell.xib */; };
 		A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */; };
+		A66194D923184E1800535708 /* NSManagedObject_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */; };
 		A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */; };
 		A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */; };
 		A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */; };
@@ -61,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64AA8712317FA81008FB8C0 /* RequestMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMocker.swift; sourceTree = "<group>"; };
+		A64AA87E23180534008FB8C0 /* mock-resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "mock-resources"; sourceTree = SOURCE_ROOT; };
+		A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewModelTests.swift; sourceTree = "<group>"; };
 		A655220C23178BE200852430 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		A655220E23178CB300852430 /* AlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertShowable.swift; sourceTree = "<group>"; };
 		A655221023179F0E00852430 /* ConvertedRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedRate.swift; sourceTree = "<group>"; };
@@ -83,6 +90,7 @@
 		A6606DF023164EBB00F25DCC /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		A6606DF123164EBB00F25DCC /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
 		A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchResultControllerDelegateWrapper.swift; sourceTree = "<group>"; };
+		A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject_Extensions.swift; sourceTree = "<group>"; };
 		A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
 		A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -186,6 +194,7 @@
 			children = (
 				A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */,
 				A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */,
+				A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -231,9 +240,12 @@
 		A6F19C3F231567CF00DB8B17 /* RatesTests */ = {
 			isa = PBXGroup;
 			children = (
+				A64AA87E23180534008FB8C0 /* mock-resources */,
+				A6F19C42231567CF00DB8B17 /* Info.plist */,
+				A64AA8712317FA81008FB8C0 /* RequestMocker.swift */,
 				A6F19C40231567CF00DB8B17 /* RatesTests.swift */,
 				A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */,
-				A6F19C42231567CF00DB8B17 /* Info.plist */,
+				A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */,
 			);
 			path = RatesTests;
 			sourceTree = "<group>";
@@ -386,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64AA87F23180534008FB8C0 /* mock-resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +423,7 @@
 				A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */,
 				A6606DC023161B1000F25DCC /* Currencies.swift in Sources */,
 				A6606DDE231632AC00F25DCC /* UITableView_Extensions.swift in Sources */,
+				A66194D923184E1800535708 /* NSManagedObject_Extensions.swift in Sources */,
 				A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */,
 				A6606DE923163CBC00F25DCC /* RequestCaller.swift in Sources */,
 				A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */,
@@ -438,6 +452,8 @@
 			files = (
 				A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */,
 				A6F19C41231567CF00DB8B17 /* RatesTests.swift in Sources */,
+				A64AA881231837DE008FB8C0 /* RatesViewModelTests.swift in Sources */,
+				A64AA87D23180126008FB8C0 /* RequestMocker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

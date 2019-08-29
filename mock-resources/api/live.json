@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "terms": "https://currencylayer.com/terms",
+  "privacy": "https://currencylayer.com/privacy",
+  "timestamp": 1566922086,
+  "source": "USD",
+  "quotes": {
+    "USDAED": 3.673007,
+    "USDJPY": 105.760985,
+    "USDUSD": 1,
+    "USDZWL": 322.000001
+  }
+}

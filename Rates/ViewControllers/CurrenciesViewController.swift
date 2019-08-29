@@ -33,8 +33,7 @@ class CurrenciesViewController:UIViewController {
       api: APIService.shared,
       managedObjectContext: appDelegate.persistentContainer.viewContext,
       onWillChangeContent: { [weak self] in
-        guard let weakSelf = self else { return }
-        weakSelf.tableView.beginUpdates()
+        self?.tableView.beginUpdates()
       },
       onChange: { [weak self] (indexPath, type, newIndexPath) in
         guard let weakSelf = self, let _type = type else { return }
@@ -56,8 +55,7 @@ class CurrenciesViewController:UIViewController {
         }
       },
       onDidChangeContent: { [weak self] in
-        guard let weakSelf = self else { return }
-        weakSelf.tableView.endUpdates()
+        self?.tableView.endUpdates()
       },
       onError:  {[weak self] error in
         guard let weakSelf = self else { return }
@@ -100,9 +98,15 @@ class CurrenciesViewController:UIViewController {
       style: .plain,
       target: self,
       action: #selector(CurrenciesViewController.didCancel))
+    
+    if viewModel.numberOfItems == 0 {
+      // This must rarely update, so for now let's call this only once.
+      viewModel.fetchCurrencies()
+    }
   }
 }
 
+// MARK: - UITableViewDataSource
 extension CurrenciesViewController:UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -125,6 +129,7 @@ extension CurrenciesViewController:UITableViewDataSource {
   }
 }
 
+// MARK: - UITableViewDelegate
 extension CurrenciesViewController:UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -135,6 +140,7 @@ extension CurrenciesViewController:UITableViewDelegate {
   }
 }
 
+// MARK: - UISearchBarDelegate
 extension CurrenciesViewController:UISearchBarDelegate {
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -144,6 +150,7 @@ extension CurrenciesViewController:UISearchBarDelegate {
   }
 }
 
+// MARK: - Extra Actions Done By User
 extension CurrenciesViewController {
   
   @objc func didCancel() {
@@ -151,4 +158,5 @@ extension CurrenciesViewController {
   }
 }
 
+// MARK: - AlertShowable
 extension CurrenciesViewController:AlertShowable {}

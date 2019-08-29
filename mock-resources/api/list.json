@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "terms": "https://currencylayer.com/terms",
+  "privacy": "https://currencylayer.com/privacy",
+  "currencies": {
+    "AED": "United Arab Emirates Dirham",
+    "JPY": "Japanese Yen",
+    "USD": "United States Dollar",
+    "ZWL": "Zimbabwean Dollar"
+  }
+}

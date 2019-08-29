@@ -10,5 +10,6 @@ import Foundation
 
 struct Quotes:Decodable {
   
+  var timestamp:Int
   var quotes:[String:Double]
 }

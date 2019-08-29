@@ -14,7 +14,7 @@ class APIServiceTests: XCTestCase {
   let apiService = APIService()
   
   override func setUp() {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    URLProtocol.registerClass(RequestMocker.self)
   }
   
   func testFetchCurrencies() {
@@ -23,12 +23,11 @@ class APIServiceTests: XCTestCase {
       switch result {
       case .success(let value):
         let currencies = value.currencies
-        XCTAssert(currencies.count > 0)
-        let usd = currencies["USD"]
-        XCTAssertEqual(usd, "United States Dollar")
-        
-        let jpy = currencies["JPY"]
-        XCTAssertEqual(jpy, "Japanese Yen")
+        XCTAssertEqual(currencies.count, 4)
+        XCTAssertEqual(currencies["USD"], "United States Dollar")
+        XCTAssertEqual(currencies["JPY"], "Japanese Yen")
+        XCTAssertEqual(currencies["AED"], "United Arab Emirates Dirham")
+        XCTAssertEqual(currencies["ZWL"], "Zimbabwean Dollar")
       case .failure(let error):
         switch error {
         case .responseError(let detail):
@@ -47,11 +46,13 @@ class APIServiceTests: XCTestCase {
     apiService.fetchLive { result in
       switch result {
       case .success(let value):
-        let currencies = value.quotes
-        XCTAssert(currencies.count > 0)
-   
-        let usdJPY = currencies["USDJPY"]!
-        XCTAssertGreaterThan(usdJPY, 0.0)
+        XCTAssertEqual(value.timestamp, 1566922086)
+        let quotes = value.quotes
+        XCTAssertEqual(quotes.count, 4)
+        XCTAssertEqual(quotes["USDAED"], 3.673007)
+        XCTAssertEqual(quotes["USDJPY"], 105.760985)
+        XCTAssertEqual(quotes["USDUSD"], 1)
+        XCTAssertEqual(quotes["USDZWL"], 322.000001)
       case .failure(let error):
         switch error {
         case .responseError(let detail):
@@ -64,4 +65,9 @@ class APIServiceTests: XCTestCase {
     }
     wait(for: [ex], timeout: 2.0)
   }
+  
+  override func tearDown() {
+    URLProtocol.unregisterClass(RequestMocker.self)
+  }
+  
 }
