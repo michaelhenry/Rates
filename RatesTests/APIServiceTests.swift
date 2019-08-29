@@ -31,8 +31,8 @@ class APIServiceTests: XCTestCase {
         XCTAssertEqual(jpy, "Japanese Yen")
       case .failure(let error):
         switch error {
-        case let e as ErrorDetail:
-           XCTFail(e.info)
+        case .responseError(let detail):
+           XCTFail(detail.info)
         default:
           XCTFail(error.localizedDescription)
         }
@@ -50,12 +50,12 @@ class APIServiceTests: XCTestCase {
         let currencies = value.quotes
         XCTAssert(currencies.count > 0)
    
-        let jpy = currencies["JPY"]
-        XCTAssertGreaterThan(jpy, 0.0)
+        let usdJPY = currencies["USDJPY"]!
+        XCTAssertGreaterThan(usdJPY, 0.0)
       case .failure(let error):
         switch error {
-        case let e as ErrorDetail:
-          XCTFail(e.info)
+        case .responseError(let detail):
+          XCTFail(detail.info)
         default:
           XCTFail(error.localizedDescription)
         }
