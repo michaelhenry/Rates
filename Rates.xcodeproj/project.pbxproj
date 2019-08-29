@@ -34,7 +34,6 @@
 		A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */; };
 		A6E189DB2316E1C4009F9DCE /* Rate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */; };
 		A6F19C29231567CD00DB8B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C28231567CD00DB8B17 /* AppDelegate.swift */; };
-		A6F19C2B231567CD00DB8B17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C2A231567CD00DB8B17 /* ViewController.swift */; };
 		A6F19C2E231567CD00DB8B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C2C231567CD00DB8B17 /* Main.storyboard */; };
 		A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C2F231567CD00DB8B17 /* Rates.xcdatamodeld */; };
 		A6F19C33231567CF00DB8B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C32231567CF00DB8B17 /* Assets.xcassets */; };
@@ -90,7 +89,6 @@
 		A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A6F19C25231567CD00DB8B17 /* Rates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F19C28231567CD00DB8B17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A6F19C2A231567CD00DB8B17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6F19C2D231567CD00DB8B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6F19C30231567CD00DB8B17 /* Rates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rates.xcdatamodel; sourceTree = "<group>"; };
 		A6F19C32231567CF00DB8B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				A6606DD623162C3800F25DCC /* ViewControllers */,
 				A6606DE32316332D00F25DCC /* Views */,
 				A6606DC32316277C00F25DCC /* ViewModels */,
-				A6F19C2A231567CD00DB8B17 /* ViewController.swift */,
 				A6F19C32231567CF00DB8B17 /* Assets.xcassets */,
 				A6F19C34231567CF00DB8B17 /* LaunchScreen.storyboard */,
 				A6F19C37231567CF00DB8B17 /* Info.plist */,
@@ -421,7 +418,6 @@
 				A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */,
 				A6606DEF23164E5F00F25DCC /* RatesViewController.swift in Sources */,
 				A6606DD423162AF700F25DCC /* Currency+CoreDataClass.swift in Sources */,
-				A6F19C2B231567CD00DB8B17 /* ViewController.swift in Sources */,
 				A6606DDA2316325800F25DCC /* NibLoadable.swift in Sources */,
 				A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */,
 				A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */,
