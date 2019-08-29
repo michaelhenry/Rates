@@ -7,14 +7,12 @@
 //
 
 struct ErrorDetail:Decodable {
+  
   let code:Int
   let info:String
 }
 
 struct ErrorInfo:Error, Decodable {
-  var error: ErrorDetail
   
-  var localizedDescription: String {
-    return error.info
-  }
+  var error: ErrorDetail
 }
