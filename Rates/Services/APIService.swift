@@ -20,7 +20,7 @@ class APIService {
     // only if this is a private repository.
     guard let _apiKey = Bundle.main
       .object(forInfoDictionaryKey: "API_KEY") as? String else {
-      return "0e95ff074fc3d9a7352cae4a4182224fx"
+      return "0e95ff074fc3d9a7352cae4a4182224f"
     }
     return _apiKey
   }
