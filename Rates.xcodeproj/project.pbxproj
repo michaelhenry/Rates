@@ -41,7 +41,6 @@
 		A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C2F231567CD00DB8B17 /* Rates.xcdatamodeld */; };
 		A6F19C33231567CF00DB8B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C32231567CF00DB8B17 /* Assets.xcassets */; };
 		A6F19C36231567CF00DB8B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C34231567CF00DB8B17 /* LaunchScreen.storyboard */; };
-		A6F19C41231567CF00DB8B17 /* RatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C40231567CF00DB8B17 /* RatesTests.swift */; };
 		A6F19C4C231567CF00DB8B17 /* RatesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C4B231567CF00DB8B17 /* RatesUITests.swift */; };
 		A6F19C66231576C300DB8B17 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C65231576C300DB8B17 /* APIService.swift */; };
 /* End PBXBuildFile section */
@@ -101,7 +100,6 @@
 		A6F19C35231567CF00DB8B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F19C37231567CF00DB8B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F19C3C231567CF00DB8B17 /* RatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6F19C40231567CF00DB8B17 /* RatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesTests.swift; sourceTree = "<group>"; };
 		A6F19C42231567CF00DB8B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F19C47231567CF00DB8B17 /* RatesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F19C4B231567CF00DB8B17 /* RatesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesUITests.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 				A64AA87E23180534008FB8C0 /* mock-resources */,
 				A6F19C42231567CF00DB8B17 /* Info.plist */,
 				A64AA8712317FA81008FB8C0 /* RequestMocker.swift */,
-				A6F19C40231567CF00DB8B17 /* RatesTests.swift */,
 				A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */,
 				A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */,
 			);
@@ -447,7 +444,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */,
-				A6F19C41231567CF00DB8B17 /* RatesTests.swift in Sources */,
 				A64AA881231837DE008FB8C0 /* RatesViewModelTests.swift in Sources */,
 				A64AA87D23180126008FB8C0 /* RequestMocker.swift in Sources */,
 			);
