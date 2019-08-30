@@ -6,5 +6,5 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and run tests
+          name: Test Rates App
           command: xcodebuild test -enableCodeCoverage YES -project Rates.xcodeproj -scheme Rates -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xʀ' | xcpretty
