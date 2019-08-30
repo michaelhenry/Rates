@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "10.2"
+    steps:
+      - checkout
+      - run:
+          name: Build and run tests
+          command: xcodebuild test -enableCodeCoverage YES -project Rates.xcodeproj -scheme Rates -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xʀ' | xcpretty
