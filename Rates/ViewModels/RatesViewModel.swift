@@ -120,12 +120,7 @@ class RatesViewModel {
         }
       }
       weakSelf.isFetching = false
-      // let's push back to main thread if closure is available.
-      if let onCompletion = completion {
-        DispatchQueue.main.async {
-          onCompletion()
-        }
-      }
+      completion?()
     }
   }
   
@@ -142,12 +137,13 @@ class RatesViewModel {
     return result as? Rate
   }
   
-  func delete(at indexPath:IndexPath) {
+  func delete(at indexPath:IndexPath, completion: (() -> Void)? = nil) {
     let result:NSFetchRequestResult = fetchedResultsController.object(at: indexPath)
     managedObjectContext.perform { [weak self] in
       do {
         (result as! Rate).active = false
         try self?.managedObjectContext.save()
+        completion?()
       } catch {
         if let onError = self?.onError {
           DispatchQueue.main.async {

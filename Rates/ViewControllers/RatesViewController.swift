@@ -100,11 +100,7 @@ class RatesViewController:UIViewController {
     
     // TODO: Must be better if we have custom inputView Keyboard.
     
-    viewModel.fetchRates() {[weak self] in
-      guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
-        else { return }
-      self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
-    }
+    refresh()
   }
 }
 
@@ -123,9 +119,14 @@ extension RatesViewController {
             animated: true, completion: nil)
   }
   
-  @objc func refresh(_ sender: UIRefreshControl) {
-    viewModel.fetchRates {
-      sender.endRefreshing()
+  @objc func refresh(_ sender: UIRefreshControl? = nil) {
+    viewModel.fetchRates { [weak self] in
+      sender?.endRefreshing()
+      guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
+        else { return }
+      DispatchQueue.main.async {
+        self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
+      }
     }
   }
 }

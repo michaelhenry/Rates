@@ -48,7 +48,6 @@ class RatesViewModelTests: XCTestCase {
     let ex = expectation(description: "wait to fetch data")
     viewModel.fetchRates() {
       ex.fulfill()
-      print("FULL FILLED")
     }
     wait(for: [ex], timeout: 2.0)
   }
@@ -60,20 +59,59 @@ class RatesViewModelTests: XCTestCase {
   }
   
   func testActivateCodeAndUpdateTheReferenceValue() {
-    let ex = expectation(description: "wait to activate")
+    // Add JPY
+    var ex = expectation(description: "wait to activate")
     viewModel.activate(code: "JPY") {
       ex.fulfill()
     }
-    wait(for: [ex], timeout: 2.0)
+    wait(for: [ex], timeout: 1.0)
     XCTAssertEqual(viewModel.numberOfItems, 1)
     
+    // CHECK CONVERSION RATE OF 1.00 USD TO JPY
     var conversionRate = viewModel.item(at: indexPath(for: 0))
     XCTAssertEqual(conversionRate?.currencyCode, "JPY")
     XCTAssertEqual(conversionRate?.value, 105.760985)
 
+    // UPDATE THE BASE CURRENCY (USD) TO 2.00
     viewModel.update(referenceValue: 2.00)
     conversionRate = viewModel.item(at: indexPath(for: 0))
     XCTAssertEqual(conversionRate?.value, 211.52197)
+    
+    // ADD NEW CODE ZWL
+    ex = expectation(description: "wait to activate again a new code")
+    viewModel.activate(code: "ZWL") {
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
+    XCTAssertEqual(viewModel.numberOfItems, 2)
+    
+    // CHANGE BACK THE BASE CURRENCY to 1.00
+    viewModel.update(referenceValue: 1.00)
+    conversionRate = viewModel.item(at: indexPath(for: 1))
+    XCTAssertEqual(conversionRate?.currencyCode, "ZWL")
+    XCTAssertEqual(conversionRate?.value, 322.000001)
+    
+    // DELETE RATE AT INDEX 0, WHICH IS JPY (BECAUSE CODE SORTED ALPHABETICALLY)
+    ex = expectation(description: "expect to delete a code from list")
+    viewModel.delete(at: indexPath(for: 0)) {
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
+    
+    XCTAssertEqual(viewModel.numberOfItems, 1)
+    
+    // CHECK IF THE FIRST ITEM NOW IS ZWL
+    conversionRate = viewModel.item(at: indexPath(for: 0))
+    XCTAssertEqual(conversionRate?.currencyCode, "ZWL")
+    XCTAssertEqual(conversionRate?.value, 322.000001)
+    
+    // DELETE THE LAST CODE
+    ex = expectation(description: "expect to delete a code from list")
+    viewModel.delete(at: indexPath(for: 0)) {
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
+    XCTAssertEqual(viewModel.numberOfItems, 0)
   }
   
   private func indexPath(for index:Int) -> IndexPath {
