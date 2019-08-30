@@ -15,10 +15,10 @@ class APIService {
   private let baseUrl:URL = URL(string: "http://apilayer.net")!
   
   private var apiKey:String {
-    // I do recommend to set the PRODUCTION API KEY via CI ENVIRONMENT Variable and
-    // on Development Environment we provide a default so that
+    // I do recommend to set the PRODUCTION API KEY via CI ENVIRONMENT Variable
+    // And on Development Environment we provide a default value so that
     // the app will continue to work without any additional configuration,
-    // only if this is a private repository.
+    // ONLY if this is in a PRIVATE Repo.
     guard let _apiKey = Bundle.main
       .object(forInfoDictionaryKey: "API_KEY") as? String else {
       return "0e95ff074fc3d9a7352cae4a4182224f"
