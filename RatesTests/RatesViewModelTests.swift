@@ -31,6 +31,7 @@ class RatesViewModelTests: XCTestCase {
     let vm = RatesViewModel(
       api: APIService.shared,
       managedObjectContext: context, // Let's use in-memory persistent
+      userDefaults: UserDefaults(),
       onWillChangeContent: nil,
       onChange: nil,
       onDidChangeContent: nil,

@@ -14,6 +14,7 @@ class RatesViewModel {
   let title = "Rates"
   
   private var isFetching:Bool = false
+  private var newRequestExecutionWaitingTime = 30.0
   
   private let api:APIService
   private var onError:((Error) -> Void)?
@@ -21,7 +22,8 @@ class RatesViewModel {
   
   private var fetchedResultsController: NSFetchedResultsController<Rate>
   private let managedObjectContext:NSManagedObjectContext
- 
+  private let userDefaults:UserDefaults
+  
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
   private var referenceValue:Decimal = 1.0
@@ -29,6 +31,7 @@ class RatesViewModel {
   init(
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
+    userDefaults:UserDefaults = UserDefaults.standard,
     onWillChangeContent:(() -> Void)? = nil,
     onChange:((
     _ indexPath:IndexPath?,
@@ -40,6 +43,7 @@ class RatesViewModel {
     
     self.api = api
     self.managedObjectContext = managedObjectContext
+    self.userDefaults = userDefaults
     self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
@@ -67,12 +71,20 @@ class RatesViewModel {
   
   func fetchRates(_ completion: (() -> Void)? = nil) {
     if isFetching { return }
+    let _lastUpdate:Date? = userDefaults.get(for: .lastUpdateDate)
+    
+    if let _date = _lastUpdate, Date().timeIntervalSince(_date) < 60.0 {
+      completion?()
+      return
+    }
+    
     isFetching = true
     api.fetchLive() {[weak self] (result) in
       guard let weakSelf = self else { return }
       
       switch result {
       case .success(let value):
+        weakSelf.userDefaults.set(value: value.timestamp, for: .lastUpdateDate)
         let context = weakSelf.managedObjectContext
         context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         context.perform {
@@ -86,18 +98,27 @@ class RatesViewModel {
             }
             try context.save()
           } catch {
-            DispatchQueue.main.async {
-              weakSelf.onError?(error)
+            if let onError = weakSelf.onError {
+              DispatchQueue.main.async {
+                onError(error)
+              }
             }
           }
         }
       case .failure(let error):
-        DispatchQueue.main.async {
-          weakSelf.onError?(error)
+        if let onError = weakSelf.onError {
+          DispatchQueue.main.async {
+            onError(error)
+          }
         }
       }
       weakSelf.isFetching = false
-      completion?()
+      // let's push back to main thread if closure is available.
+      if let onCompletion = completion {
+        DispatchQueue.main.async {
+          onCompletion()
+        }
+      }
     }
   }
   
@@ -145,6 +166,13 @@ class RatesViewModel {
   func item(at indexPath:IndexPath) -> EquivalentRate? {
     guard let obj = rate(at: indexPath) else { return nil }
     return obj.equivalentRate(at: NSDecimalNumber(decimal: referenceValue))
+  }
+  
+  func lastUpdateText() -> String {
+    guard let _lastUpdate:Date = userDefaults.get(for: .lastUpdateDate) else { return "" }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd yyyy HH:mm"
+    return formatter.string(from: _lastUpdate)
   }
 }
 

@@ -92,7 +92,9 @@ class RatesViewController:UIViewController {
     
     // TODO: Must be better if we have custom inputView Keyboard.
     
-    viewModel.fetchRates()
+    viewModel.fetchRates() {[weak self] in
+      self?.lastUpdatedLabel.text = self?.viewModel.lastUpdateText()
+    }
   }
 }
 

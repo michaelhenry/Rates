@@ -80,14 +80,18 @@ class CurrenciesViewModel {
             }
             try context.save()
           } catch {
-            DispatchQueue.main.async {
-              weakSelf.onError?(error)
+            if let onError = weakSelf.onError {
+              DispatchQueue.main.async {
+                onError(error)
+              }
             }
           }
         }
       case .failure(let error):
-        DispatchQueue.main.async {
-          weakSelf.onError?(error)
+        if let onError = weakSelf.onError {
+          DispatchQueue.main.async {
+            onError(error)
+          }
         }
       }
       weakSelf.isFetching = false
