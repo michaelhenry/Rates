@@ -11,8 +11,7 @@ import CoreData
 
 class CurrenciesViewModel {
   
-  let title = "Select Currency"
-  
+  var title:String
   private var isFetching:Bool = false
   
   private let api:APIService
@@ -24,6 +23,7 @@ class CurrenciesViewModel {
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
   init(
+    action: ActionType,
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
     onWillChangeContent:(() -> Void)? = nil,
@@ -39,6 +39,7 @@ class CurrenciesViewModel {
     self.managedObjectContext = managedObjectContext
     self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
+    self.title = action.title
     
     fetchResultDelegateWrapper = NSFetchedResultsControllerDelegateWrapper(
       onWillChangeContent: onWillChangeContent,
@@ -127,6 +128,23 @@ extension CurrenciesViewModel {
       onReloadVisibleData?()
     } catch {
       print("ERROR \(error)")
+    }
+  }
+}
+
+extension CurrenciesViewModel {
+  
+  enum ActionType {
+    case changeBaseCurrency
+    case addNewCurrency
+    
+    var title:String {
+      switch self {
+      case .changeBaseCurrency:
+        return "Select Base Currency"
+      case .addNewCurrency:
+        return "Select New Currency"
+      }
     }
   }
 }

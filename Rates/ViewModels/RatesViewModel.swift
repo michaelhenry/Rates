@@ -86,17 +86,17 @@ class RatesViewModel {
     
     let baseCurrencyCode:String = defaults.get(for: .baseCurrencyCode) ?? "USA"
     
-    fetchRates(source: baseCurrencyCode) {
+    fetchRates(code: baseCurrencyCode) {
       completion?(true)
     }
   }
   
-  func fetchRates(source:String, _ completion: (() -> Void)? = nil) {
+  func fetchRates(code:String, _ completion: (() -> Void)? = nil) {
   
     if isFetching { return }
     isFetching = true
     
-    api.fetchLive(source: source) {[weak self] (result) in
+    api.fetchLive(source: code) {[weak self] (result) in
       guard let weakSelf = self else { return }
       
       switch result {
@@ -219,6 +219,6 @@ extension RatesViewModel {
   }
   
   func update(baseCurrencyCode: String) {
-    fetchRates(source: baseCurrencyCode)
+    fetchRates(code: baseCurrencyCode)
   }
 }

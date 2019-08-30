@@ -116,13 +116,6 @@ extension RatesViewController {
     viewModel.update(referenceValue: Decimal(string: text) ?? 0.0)
   }
   
-  @objc func showCurrencies() {
-    let currenciesVC = CurrenciesViewController()
-    currenciesVC.delegate = self
-    present(UINavigationController(rootViewController: currenciesVC),
-            animated: true, completion: nil)
-  }
-  
   @objc func refresh(_ sender: UIRefreshControl? = nil) {
     viewModel.refresh { [weak self] _ in
       DispatchQueue.main.async {
@@ -130,13 +123,24 @@ extension RatesViewController {
         guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
           else { return }
         self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
-        self?.currencyButton.setTitle(AppDefaults.shared.get(for: .baseCurrencyCode), for: .normal)
       }
     }
   }
   
+  @objc func showCurrencies() {
+    let currenciesVC = CurrenciesViewController()
+    currenciesVC.action = .addNewCurrency
+    currenciesVC.delegate = self
+    present(UINavigationController(rootViewController: currenciesVC),
+            animated: true, completion: nil)
+  }
+
   @objc func updateBaseCurrency() {
-    viewModel.update(baseCurrencyCode: "USD")
+    let currenciesVC = CurrenciesViewController()
+    currenciesVC.action = .changeBaseCurrency
+    currenciesVC.delegate = self
+    present(UINavigationController(rootViewController: currenciesVC),
+            animated: true, completion: nil)
   }
 }
 
@@ -183,9 +187,15 @@ extension RatesViewController:CurrenciesViewControllerDelegate {
   }
   
   func currenciesVC(_ currenciesVC: CurrenciesViewController, didSelect currency: Currency) {
-    guard let _code = currency.code else { return }
+    guard let _code = currency.code, let action = currenciesVC.action else { return }
+ 
     currenciesVC.dismiss(animated: true) {[weak self] in
-      self?.viewModel.activate(code: _code)
+      switch action {
+      case .addNewCurrency:
+        self?.viewModel.activate(code: _code)
+      case .changeBaseCurrency:
+        self?.viewModel.update(baseCurrencyCode: _code)
+      }
     }
   }
 }

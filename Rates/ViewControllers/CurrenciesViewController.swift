@@ -17,7 +17,7 @@ protocol CurrenciesViewControllerDelegate:class {
 
 class CurrenciesViewController:UITableViewController {
   
-  let searchController = UISearchController(searchResultsController: nil)
+  var action:CurrenciesViewModel.ActionType!
   
   weak var delegate:CurrenciesViewControllerDelegate?
 
@@ -26,6 +26,7 @@ class CurrenciesViewController:UITableViewController {
       fatalError("AppDelegate must not be null!")
     }
     return CurrenciesViewModel(
+      action: self.action,
       api: APIService.shared,
       managedObjectContext: appDelegate.persistentContainer.viewContext,
       onWillChangeContent: { [weak self] in
@@ -75,13 +76,14 @@ class CurrenciesViewController:UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = viewModel.title
+    title = action.title
     tableView.rowHeight = UITableView.automaticDimension
     tableView.register(CurrencyCell.self)
     tableView.dataSource = self
     tableView.delegate = self
     tableView.keyboardDismissMode = .onDrag
     
+    let searchController = UISearchController(searchResultsController: nil)
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.placeholder = "Search Currencies"
     searchController.searchBar.delegate = self
