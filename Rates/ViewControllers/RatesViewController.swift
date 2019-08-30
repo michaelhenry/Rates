@@ -121,10 +121,10 @@ extension RatesViewController {
   
   @objc func refresh(_ sender: UIRefreshControl? = nil) {
     viewModel.fetchRates { [weak self] in
-      sender?.endRefreshing()
-      guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
-        else { return }
       DispatchQueue.main.async {
+        sender?.endRefreshing()
+        guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
+          else { return }
         self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
       }
     }
