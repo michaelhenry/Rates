@@ -74,13 +74,20 @@ class RatesViewController:UIViewController {
     super.viewDidLoad()
     
     title = viewModel.title
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(
+      self, action: #selector(RatesViewController.refresh(_:)),
+      for: .valueChanged)
+    
     tableView.rowHeight = 70
     tableView.register(RateCell.self)
     tableView.dataSource = self
     tableView.delegate = self
     tableView.separatorStyle = .none
     tableView.keyboardDismissMode = .onDrag
-    
+    tableView.refreshControl = refreshControl
+ 
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       barButtonSystemItem: .add,
       target: self, action: #selector(RatesViewController.showCurrencies))
@@ -114,6 +121,12 @@ extension RatesViewController {
     currenciesVC.delegate = self
     present(UINavigationController(rootViewController: currenciesVC),
             animated: true, completion: nil)
+  }
+  
+  @objc func refresh(_ sender: UIRefreshControl) {
+    viewModel.fetchRates {
+      sender.endRefreshing()
+    }
   }
 }
 
