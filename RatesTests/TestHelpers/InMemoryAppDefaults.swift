@@ -19,8 +19,4 @@ class InMemoryAppDefaults:AppDefaultsConvertible {
   func set<T>(value: T?, for key:AppDefaultsKey) {
     defaults[key] = value
   }
-  
-  func truncate() {
-    defaults = [:]
-  }
 }

@@ -12,7 +12,11 @@ import CoreData
 
 class RatesViewModelTests: XCTestCase {
   
-  lazy var viewModel:RatesViewModel = {
+  var viewModel:RatesViewModel!
+  
+  override func setUp() {
+    URLProtocol.registerClass(RequestMocker.self)
+    
     // For unit testing, We just need to store it in-memory
     let container = NSPersistentContainer(name: "Rates")
     let description = NSPersistentStoreDescription()
@@ -26,12 +30,13 @@ class RatesViewModelTests: XCTestCase {
         fatalError("Create an in-memory coordinator failed \(error)")
       }
     }
-
+    
     let context = container.viewContext
-    let vm = RatesViewModel(
+    viewModel = RatesViewModel(
       api: APIService.shared,
       managedObjectContext: context, // Let's use in-memory persistent
       defaults: InMemoryAppDefaults(),
+      newRequestWaitingTime: 5, // WAITING TIME FOR NEW REQUEST is 5 secs in Test
       onWillChangeContent: nil,
       onChange: nil,
       onDidChangeContent: nil,
@@ -39,17 +44,6 @@ class RatesViewModelTests: XCTestCase {
       onError:  { error in
         fatalError(error.localizedDescription)
     })
-    return vm
-  }()
-  
-  override func setUp() {
-    URLProtocol.registerClass(RequestMocker.self)
-
-    let ex = expectation(description: "wait to fetch data")
-    viewModel.fetchRates() {
-      ex.fulfill()
-    }
-    wait(for: [ex], timeout: 2.0)
   }
   
   func testBasicInfo() {
@@ -59,8 +53,17 @@ class RatesViewModelTests: XCTestCase {
   }
   
   func testActivateCodeAndUpdateTheReferenceValue() {
+    
+    // Let's fetch Data First.
+    var ex = expectation(description: "wait to fetch data")
+    viewModel.fetchRates() { hasExecuted in
+      XCTAssertTrue(hasExecuted)
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 2.0)
+    
     // Add JPY
-    var ex = expectation(description: "wait to activate")
+    ex = expectation(description: "wait to activate JPY")
     viewModel.activate(code: "JPY") {
       ex.fulfill()
     }
@@ -114,11 +117,40 @@ class RatesViewModelTests: XCTestCase {
     XCTAssertEqual(viewModel.numberOfItems, 0)
   }
   
-  private func indexPath(for index:Int) -> IndexPath {
-    return IndexPath(row: index, section: 0)
+  func testWaitingTimeToAvoidRateLimit() {
+    var ex = expectation(description: "wait to fetch data")
+    viewModel.fetchRates() { hasExecuted in
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
+    
+    ex = expectation(description: "wait to fetch data again after 4 seconds but with hasExecuted will still FALSE")
+    sleep(4)
+    viewModel.fetchRates() { hasExecuted in
+      XCTAssertFalse(hasExecuted)
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
+    
+    ex = expectation(description: "wait again after 1 seconds and the hasExecuted should be TRUE")
+    sleep(1)
+    viewModel.fetchRates() { hasExecuted in
+      XCTAssertTrue(hasExecuted)
+      ex.fulfill()
+    }
+    wait(for: [ex], timeout: 1.0)
   }
-  
+
   override func tearDown() {
     URLProtocol.unregisterClass(RequestMocker.self)
+  }
+}
+
+
+// MARK: - Helpers
+extension RatesViewModelTests {
+  
+  fileprivate func indexPath(for index:Int) -> IndexPath {
+    return IndexPath(row: index, section: 0)
   }
 }

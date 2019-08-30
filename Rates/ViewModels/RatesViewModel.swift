@@ -14,7 +14,7 @@ class RatesViewModel {
   let title = "Rates"
   
   private var isFetching:Bool = false
-  private var newRequestExecutionWaitingTime = 30.0
+  private var newRequestWaitingTime:Double // In seconds
   
   private let api:APIService
   private var onError:((Error) -> Void)?
@@ -32,6 +32,7 @@ class RatesViewModel {
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
     defaults:AppDefaultsConvertible,
+    newRequestWaitingTime:Double = 30 * 60, // Default is 30 Minutes
     onWillChangeContent:(() -> Void)? = nil,
     onChange:((
     _ indexPath:IndexPath?,
@@ -44,6 +45,7 @@ class RatesViewModel {
     self.api = api
     self.managedObjectContext = managedObjectContext
     self.defaults = defaults
+    self.newRequestWaitingTime = newRequestWaitingTime
     self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
@@ -69,12 +71,14 @@ class RatesViewModel {
     }
   }
   
-  func fetchRates(_ completion: (() -> Void)? = nil) {
+  func fetchRates(_ completion: ((_ hasExcuted: Bool) -> Void)? = nil) {
     if isFetching { return }
     
     // check for the lastFetchTimestamp.
-    if let _lastFetch = defaults.get(for: .lastFetchTimestamp) as Date?, Date().timeIntervalSince(_lastFetch) < (newRequestExecutionWaitingTime * 60.0) {
-      completion?()
+    if let _lastFetch = defaults.get(for: .lastFetchTimestamp) as Date?, Date().timeIntervalSince(_lastFetch) < newRequestWaitingTime {
+      // the request was not executed, because we avoid to reach
+      // the request rate limitation.
+      completion?(false)
       return
     }
     
@@ -120,7 +124,7 @@ class RatesViewModel {
         }
       }
       weakSelf.isFetching = false
-      completion?()
+      completion?(true)
     }
   }
   
