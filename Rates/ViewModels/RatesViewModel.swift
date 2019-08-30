@@ -22,7 +22,7 @@ class RatesViewModel {
   
   private var fetchedResultsController: NSFetchedResultsController<Rate>
   private let managedObjectContext:NSManagedObjectContext
-  private let userDefaults:UserDefaults
+  private let defaults:AppDefaultsConvertible
   
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
@@ -31,7 +31,7 @@ class RatesViewModel {
   init(
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
-    userDefaults:UserDefaults = UserDefaults.standard,
+    defaults:AppDefaultsConvertible,
     onWillChangeContent:(() -> Void)? = nil,
     onChange:((
     _ indexPath:IndexPath?,
@@ -43,7 +43,7 @@ class RatesViewModel {
     
     self.api = api
     self.managedObjectContext = managedObjectContext
-    self.userDefaults = userDefaults
+    self.defaults = defaults
     self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
@@ -71,9 +71,9 @@ class RatesViewModel {
   
   func fetchRates(_ completion: (() -> Void)? = nil) {
     if isFetching { return }
-    let _lastUpdate:Date? = userDefaults.get(for: .lastUpdateDate)
     
-    if let _date = _lastUpdate, Date().timeIntervalSince(_date) < 60.0 {
+    // check for the lastFetchTimestamp.
+    if let _lastFetch = defaults.get(for: .lastFetchTimestamp) as Date?, Date().timeIntervalSince(_lastFetch) < (newRequestExecutionWaitingTime * 60.0) {
       completion?()
       return
     }
@@ -84,7 +84,10 @@ class RatesViewModel {
       
       switch result {
       case .success(let value):
-        weakSelf.userDefaults.set(value: value.timestamp, for: .lastUpdateDate)
+   
+        // Must set to value.timestamp for the lastQuotesTimestamp
+        weakSelf.defaults.set(value: value.timestamp, for: .lastQuotesTimestamp)
+      
         let context = weakSelf.managedObjectContext
         context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         context.perform {
@@ -105,6 +108,10 @@ class RatesViewModel {
             }
           }
         }
+        
+        // Must set to now the lastFetchtimestamp
+        weakSelf.defaults.set(value: Date(), for: .lastFetchTimestamp)
+        
       case .failure(let error):
         if let onError = weakSelf.onError {
           DispatchQueue.main.async {
@@ -142,7 +149,11 @@ class RatesViewModel {
         (result as! Rate).active = false
         try self?.managedObjectContext.save()
       } catch {
-        print(error)
+        if let onError = self?.onError {
+          DispatchQueue.main.async {
+            onError(error)
+          }
+        }
       }
     }
   }
@@ -158,7 +169,11 @@ class RatesViewModel {
         try self?.managedObjectContext.save()
         completion?()
       } catch {
-        print(error)
+        if let onError = self?.onError {
+          DispatchQueue.main.async {
+            onError(error)
+          }
+        }
       }
     }
   }
@@ -168,10 +183,13 @@ class RatesViewModel {
     return obj.equivalentRate(at: NSDecimalNumber(decimal: referenceValue))
   }
   
-  func lastUpdateText() -> String {
-    guard let _lastUpdate:Date = userDefaults.get(for: .lastUpdateDate) else { return "" }
+  /// lastQuotesTimestampText()
+  ///
+  /// - Returns: is the `As of` timestamp from the API
+  func lastQuotesTimestampText() -> String {
+    guard let _lastUpdate:Date = defaults.get(for: .lastQuotesTimestamp) else { return "" }
     let formatter = DateFormatter()
-    formatter.dateFormat = "MMM dd yyyy HH:mm"
+    formatter.dateFormat = "MMM dd yyyy HH:mm a"
     return formatter.string(from: _lastUpdate)
   }
 }

@@ -23,6 +23,7 @@ class RatesViewController:UIViewController {
     return RatesViewModel(
       api: APIService.shared,
       managedObjectContext: appDelegate.persistentContainer.viewContext,
+      defaults: AppDefaults.shared,
       onWillChangeContent: { [weak self] in
         self?.tableView.beginUpdates()
       },
@@ -93,7 +94,9 @@ class RatesViewController:UIViewController {
     // TODO: Must be better if we have custom inputView Keyboard.
     
     viewModel.fetchRates() {[weak self] in
-      self?.lastUpdatedLabel.text = self?.viewModel.lastUpdateText()
+      guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
+        else { return }
+      self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
     }
   }
 }

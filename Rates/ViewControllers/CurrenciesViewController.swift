@@ -94,6 +94,8 @@ class CurrenciesViewController:UITableViewController {
       target: self,
       action: #selector(CurrenciesViewController.didCancel))
     
+    // TODO Able to Filter/Exclude the Currencies that have already selected
+    
     if viewModel.numberOfItems == 0 {
       // This must rarely update, so for now let's call this only once.
       viewModel.fetchCurrencies()
