@@ -95,7 +95,7 @@ class RatesViewModel {
             value.quotes.forEach {
               let r = Rate(context: context)
               // code will be like Source-Target like `USDGBP`
-              // so let's clean the data before saving to our database since we only support 1 conversion at a time
+              // so let's clean the data before saving to our database since we only support 1 base currency conversion at a time
               r.currencyCode = String($0.key.suffix(3))
               r.value = NSDecimalNumber(floatLiteral: $0.value) 
             }
