@@ -12,6 +12,7 @@ class APIService {
   
   static let shared = APIService()
   private lazy var requestCaller = RequestCaller()
+  private let baseUrl:URL = URL(string: "http://apilayer.net")!
   
   private var apiKey:String {
     // I do recommend to set the PRODUCTION API KEY via CI ENVIRONMENT Variable and
@@ -26,15 +27,18 @@ class APIService {
   }
   
   func fetchCurrencies(completion: @escaping(Result<Currencies, RequestError>) -> Void) {
-    let request = URLRequest(
-      url: URL(string: "http://apilayer.net/api/list?access_key=\(apiKey)")!)
-    requestCaller.call(request: request, completion: completion)
+    let endpoint = "api/list"
+    requestCaller.call(request: request(from: endpoint), completion: completion)
   }
   
   func fetchLive(source:String = "USD", completion: @escaping(Result<Quotes, RequestError>) -> Void) {
-    
-    let request = URLRequest(
-      url: URL(string: "http://apilayer.net/api/live?access_key=\(apiKey)")!)
-    requestCaller.call(request: request, completion: completion)
+    let endpoint = "api/live"
+    requestCaller.call(request: request(from: endpoint), completion: completion)
+  }
+  
+  private func request(from endpoint:String) -> URLRequest {
+    var components = URLComponents(url: baseUrl.appendingPathComponent(endpoint), resolvingAgainstBaseURL: true)!
+    components.queryItems = [URLQueryItem(name: "access_key", value: apiKey)]
+    return URLRequest(url: components.url!)
   }
 }

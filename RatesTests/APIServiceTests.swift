@@ -46,7 +46,7 @@ class APIServiceTests: XCTestCase {
     apiService.fetchLive { result in
       switch result {
       case .success(let value):
-        XCTAssertEqual(value.timestamp, 1566922086)
+        XCTAssertEqual(value.timestamp, Date(timeIntervalSince1970: 1566922086))
         let quotes = value.quotes
         XCTAssertEqual(quotes.count, 4)
         XCTAssertEqual(quotes["USDAED"], 3.673007)
