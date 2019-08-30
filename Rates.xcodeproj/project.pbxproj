@@ -32,7 +32,6 @@
 		A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF023164EBB00F25DCC /* RateCell.swift */; };
 		A6606DF323164EBB00F25DCC /* RateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6606DF123164EBB00F25DCC /* RateCell.xib */; };
 		A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */; };
-		A66194D923184E1800535708 /* NSManagedObject_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */; };
 		A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */; };
 		A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */; };
 		A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */; };
@@ -90,7 +89,6 @@
 		A6606DF023164EBB00F25DCC /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		A6606DF123164EBB00F25DCC /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
 		A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchResultControllerDelegateWrapper.swift; sourceTree = "<group>"; };
-		A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject_Extensions.swift; sourceTree = "<group>"; };
 		A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
 		A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			children = (
 				A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */,
 				A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */,
-				A66194D823184E1800535708 /* NSManagedObject_Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -423,7 +420,6 @@
 				A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */,
 				A6606DC023161B1000F25DCC /* Currencies.swift in Sources */,
 				A6606DDE231632AC00F25DCC /* UITableView_Extensions.swift in Sources */,
-				A66194D923184E1800535708 /* NSManagedObject_Extensions.swift in Sources */,
 				A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */,
 				A6606DE923163CBC00F25DCC /* RequestCaller.swift in Sources */,
 				A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */,

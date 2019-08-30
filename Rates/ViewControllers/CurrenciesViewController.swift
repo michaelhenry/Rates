@@ -74,6 +74,10 @@ class CurrenciesViewController:UIViewController {
     })
   }()
   
+  // Since this view controller, is a simple one,
+  // i just created this programatically, so that it would be more simple,
+  // and much easier to do the code review because of not having
+  // storyboard or nib files.
   override func loadView() {
     super.loadView()
     view = tableView

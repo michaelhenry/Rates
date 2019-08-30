@@ -14,10 +14,13 @@ class RateCell: UITableViewCell, Bindable {
   
   @IBOutlet weak var codeLabel:UILabel!
   @IBOutlet weak var valueLabel:UILabel!
+  @IBOutlet weak var containerView:UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
     selectionStyle = .none
+    containerView.layer.cornerRadius = 5.0
+    containerView.clipsToBounds = true
   }
   
   func bind(_ data: T) {

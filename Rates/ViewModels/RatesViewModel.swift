@@ -87,7 +87,7 @@ class RatesViewModel {
         context.perform {
           do {
             value.quotes.forEach {
-              let r = Rate(ctx: context)
+              let r = Rate(context: context)
               // code will be like Source-Target like `USDGBP`
               // so let's clean the data before saving to our database since we only support 1 conversion at a time
               r.currencyCode = String($0.key.suffix(3))

@@ -9,16 +9,15 @@
 import Foundation
 import CoreData
 
-
 /// NSFetchedResultsControllerDelegateWrapper is a wrapper that will help to avoid repeatition on setting up the NSFetchResultControllerDelegate
 class NSFetchedResultsControllerDelegateWrapper:NSObject, NSFetchedResultsControllerDelegate {
+  
   private var onWillChangeContent:(() -> Void)?
   private var onDidChangeContent:(() -> Void)?
   private var onChange:((
   _ indexPath:IndexPath?,
   _ type: NSFetchedResultsChangeType,
   _ newIndexPath:IndexPath?) -> Void)?
-  
   
   init(
     onWillChangeContent:(() -> Void)?,
