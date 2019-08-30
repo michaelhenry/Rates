@@ -15,15 +15,11 @@ protocol CurrenciesViewControllerDelegate:class {
   func currenciesVCDidCancel(_ currenciesVC:CurrenciesViewController)
 }
 
-class CurrenciesViewController:UIViewController {
+class CurrenciesViewController:UITableViewController {
   
   let searchController = UISearchController(searchResultsController: nil)
   
   weak var delegate:CurrenciesViewControllerDelegate?
-  
-  lazy var tableView:UITableView = {
-    return UITableView(frame: .zero, style: .plain)
-  }()
 
   lazy var viewModel:CurrenciesViewModel = {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -74,15 +70,6 @@ class CurrenciesViewController:UIViewController {
     })
   }()
   
-  // Since this view controller, is a simple one,
-  // i just created this programatically, so that it would be more simple,
-  // and much easier to do the code review because of not having
-  // storyboard or nib files.
-  override func loadView() {
-    super.loadView()
-    view = tableView
-  }
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     title = viewModel.title
@@ -90,6 +77,7 @@ class CurrenciesViewController:UIViewController {
     tableView.register(CurrencyCell.self)
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.keyboardDismissMode = .onDrag
     
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.placeholder = "Search Currencies"
@@ -108,35 +96,27 @@ class CurrenciesViewController:UIViewController {
       viewModel.fetchCurrencies()
     }
   }
-}
-
-// MARK: - UITableViewDataSource
-extension CurrenciesViewController:UITableViewDataSource {
   
-  func numberOfSections(in tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return viewModel.numberOfSections
   }
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.numberOfItems
   }
   
-  func tableView(
+  override func tableView(
     _ tableView: UITableView,
     cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+    
     let cell:CurrencyCell = tableView.dequeue(CurrencyCell.self)!
     guard let currency = viewModel.currency(at: indexPath)
       else { return UITableViewCell() }
     cell.bind(currency)
     return cell
   }
-}
-
-// MARK: - UITableViewDelegate
-extension CurrenciesViewController:UITableViewDelegate {
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     if let currency  = viewModel.currency(at: indexPath) {
       delegate?.currenciesVC(self, didSelect: currency)

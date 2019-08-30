@@ -14,6 +14,7 @@ class RatesViewController:UIViewController {
   @IBOutlet weak var tableView:UITableView!
   @IBOutlet weak var inputField:UITextField!
   @IBOutlet weak var currencyButton:UIButton!
+  @IBOutlet weak var lastUpdatedLabel:UILabel!
   
   lazy var viewModel:RatesViewModel = {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -88,6 +89,8 @@ class RatesViewController:UIViewController {
     inputField.text = "1"
     inputField.keyboardType = .numbersAndPunctuation
     inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
+    
+    // TODO: Must be better if we have custom inputView Keyboard.
     
     viewModel.fetchRates()
   }
