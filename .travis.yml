@@ -1,0 +1,8 @@
+osx_image: xcode10.2
+language: objective-c
+
+jobs:
+  include:
+    - stage: Testing Rates App
+      script:
+      - xcodebuild test -enableCodeCoverage YES -project Rates.xcodeproj -scheme Rates -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xʀ' | xcpretty
