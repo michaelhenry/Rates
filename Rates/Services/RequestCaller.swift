@@ -13,7 +13,7 @@ class RequestCaller {
   private lazy var decoder = JSONDecoder()
   private let urlSession:URLSession = URLSession.shared
   
-  /// A request call that provide Generic Decodable & HasStatus & HasErrorDetail model
+  /// A request call that provide Generic Decodable model
   func call<Model:Decodable>(
     request:URLRequest,
     completion: @escaping(Result<Model, RequestError>) -> Void) {
