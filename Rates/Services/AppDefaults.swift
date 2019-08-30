@@ -21,11 +21,4 @@ class AppDefaults:AppDefaultsConvertible {
   func set<T>(value: T?, for key:AppDefaultsKey) {
     defaults.set(value, forKey: key.rawValue)
   }
-  
-  func truncate() {
-    defaults.dictionaryRepresentation()
-      .keys.forEach { [weak self] in
-        self?.defaults.removeObject(forKey: $0)
-    }
-  }
 }
