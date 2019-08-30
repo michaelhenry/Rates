@@ -17,4 +17,5 @@ enum AppDefaultsKey:String {
 protocol AppDefaultsConvertible {
   func get<T>(for key:AppDefaultsKey) -> T?
   func set<T>(value: T?, for key:AppDefaultsKey)
+  func remove(key:AppDefaultsKey)
 }

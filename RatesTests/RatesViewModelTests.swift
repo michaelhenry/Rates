@@ -56,7 +56,7 @@ class RatesViewModelTests: XCTestCase {
     
     // Let's fetch Data First.
     var ex = expectation(description: "wait to fetch data")
-    viewModel.fetchRates() { hasExecuted in
+    viewModel.refresh() { hasExecuted in
       XCTAssertTrue(hasExecuted)
       ex.fulfill()
     }
@@ -119,14 +119,14 @@ class RatesViewModelTests: XCTestCase {
   
   func testWaitingTimeToAvoidRateLimit() {
     var ex = expectation(description: "wait to fetch data")
-    viewModel.fetchRates() { hasExecuted in
+    viewModel.refresh() { hasExecuted in
       ex.fulfill()
     }
     wait(for: [ex], timeout: 1.0)
     
     ex = expectation(description: "wait to fetch data again after 4 seconds but with hasExecuted will still FALSE")
     sleep(4)
-    viewModel.fetchRates() { hasExecuted in
+    viewModel.refresh() { hasExecuted in
       XCTAssertFalse(hasExecuted)
       ex.fulfill()
     }
@@ -134,7 +134,7 @@ class RatesViewModelTests: XCTestCase {
     
     ex = expectation(description: "wait again after 1 second and the hasExecuted should be TRUE")
     sleep(1)
-    viewModel.fetchRates() { hasExecuted in
+    viewModel.refresh() { hasExecuted in
       XCTAssertTrue(hasExecuted)
       ex.fulfill()
     }

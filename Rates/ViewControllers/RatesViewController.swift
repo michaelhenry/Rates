@@ -64,7 +64,7 @@ class RatesViewController:UIViewController {
                 title: "Retry",
                 style: .default,
                 handler: { (action) in
-                  weakSelf.viewModel.fetchRates()
+                  weakSelf.viewModel.refresh()
               }),
             ])
     })
@@ -93,6 +93,10 @@ class RatesViewController:UIViewController {
       target: self, action: #selector(RatesViewController.showCurrencies))
     
     // TODO: Change the Default Currency
+    currencyButton.setTitle(AppDefaults.shared.get(for: .baseCurrencyCode), for: .normal)
+    currencyButton.addTarget(
+      self, action: #selector(RatesViewController.updateBaseCurrency),
+      for: .touchUpInside)
     
     inputField.text = "1.00"
     inputField.keyboardType = .numbersAndPunctuation
@@ -120,14 +124,19 @@ extension RatesViewController {
   }
   
   @objc func refresh(_ sender: UIRefreshControl? = nil) {
-    viewModel.fetchRates { [weak self] _ in
+    viewModel.refresh { [weak self] _ in
       DispatchQueue.main.async {
         sender?.endRefreshing()
         guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
           else { return }
         self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
+        self?.currencyButton.setTitle(AppDefaults.shared.get(for: .baseCurrencyCode), for: .normal)
       }
     }
+  }
+  
+  @objc func updateBaseCurrency() {
+    viewModel.update(baseCurrencyCode: "USD")
   }
 }
 

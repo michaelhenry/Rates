@@ -71,9 +71,11 @@ class RatesViewModel {
     }
   }
   
-  func fetchRates(_ completion: ((_ hasExcuted: Bool) -> Void)? = nil) {
-    if isFetching { return }
-    
+
+  /// Refresh Decides if the request will execute or not.
+  ///
+  /// - Parameter completion
+  func refresh(_ completion: ((_ hasExcuted: Bool) -> Void)? = nil) {
     // check for the lastFetchTimestamp.
     if let _lastFetch = defaults.get(for: .lastFetchTimestamp) as Date?, Date().timeIntervalSince(_lastFetch) < newRequestWaitingTime {
       // the request was not executed, because we avoid to reach
@@ -82,8 +84,19 @@ class RatesViewModel {
       return
     }
     
+    let baseCurrencyCode:String = defaults.get(for: .baseCurrencyCode) ?? "USA"
+    
+    fetchRates(source: baseCurrencyCode) {
+      completion?(true)
+    }
+  }
+  
+  func fetchRates(source:String, _ completion: (() -> Void)? = nil) {
+  
+    if isFetching { return }
     isFetching = true
-    api.fetchLive() {[weak self] (result) in
+    
+    api.fetchLive(source: source) {[weak self] (result) in
       guard let weakSelf = self else { return }
       
       switch result {
@@ -92,6 +105,9 @@ class RatesViewModel {
         // Must set to value.timestamp for the lastQuotesTimestamp
         weakSelf.defaults.set(value: value.timestamp, for: .lastQuotesTimestamp)
       
+        // Let's set the actual base currency now, since we finally get a valid one.
+        weakSelf.defaults.set(value: value.source, for: .baseCurrencyCode)
+        
         let context = weakSelf.managedObjectContext
         context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         context.perform {
@@ -124,7 +140,7 @@ class RatesViewModel {
         }
       }
       weakSelf.isFetching = false
-      completion?(true)
+      completion?()
     }
   }
   
@@ -186,8 +202,9 @@ class RatesViewModel {
   /// lastQuotesTimestampText()
   ///
   /// - Returns: is the `As of` timestamp from the API
-  func lastQuotesTimestampText() -> String {
-    guard let _lastUpdate:Date = defaults.get(for: .lastQuotesTimestamp) else { return "" }
+  func lastQuotesTimestampText() -> String? {
+    guard let _lastUpdate:Date = defaults.get(for: .lastQuotesTimestamp)
+      else { return nil }
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd yyyy HH:mm a"
     return formatter.string(from: _lastUpdate)
@@ -199,5 +216,9 @@ extension RatesViewModel {
   func update(referenceValue: Decimal) {
     self.referenceValue = referenceValue
     onReloadVisibleData?()
+  }
+  
+  func update(baseCurrencyCode: String) {
+    fetchRates(source: baseCurrencyCode)
   }
 }

@@ -19,4 +19,8 @@ class InMemoryAppDefaults:AppDefaultsConvertible {
   func set<T>(value: T?, for key:AppDefaultsKey) {
     defaults[key] = value
   }
+  
+  func remove(key:AppDefaultsKey) {
+    defaults.removeValue(forKey: key)
+  }
 }

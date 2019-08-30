@@ -21,4 +21,8 @@ class AppDefaults:AppDefaultsConvertible {
   func set<T>(value: T?, for key:AppDefaultsKey) {
     defaults.set(value, forKey: key.rawValue)
   }
+  
+  func remove(key: AppDefaultsKey) {
+    defaults.removeObject(forKey: key.rawValue)
+  }
 }

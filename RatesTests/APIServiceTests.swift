@@ -43,7 +43,7 @@ class APIServiceTests: XCTestCase {
   
   func testFetchQuotes() {
     let ex = expectation(description: "must have quotes")
-    apiService.fetchLive { result in
+    apiService.fetchLive(source: "USA") { result in
       switch result {
       case .success(let value):
         XCTAssertEqual(value.timestamp, Date(timeIntervalSince1970: 1566922086))
