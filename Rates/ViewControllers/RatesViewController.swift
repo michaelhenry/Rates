@@ -86,7 +86,7 @@ class RatesViewController:UIViewController {
     
     // TODO: Change the Default Currency
     
-    inputField.text = "1"
+    inputField.text = "1.00"
     inputField.keyboardType = .numbersAndPunctuation
     inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
     
@@ -101,9 +101,7 @@ extension RatesViewController {
   
   @objc func textFieldDidChange(_ textField:UITextField) {
     guard let text = textField.text else { return }
-    viewModel.update(referenceValue: Decimal(string: text) ?? 0.0) { [weak self] in
-      self?.tableView.reloadData()
-    }
+    viewModel.update(referenceValue: Decimal(string: text) ?? 0.0)
   }
   
   @objc func showCurrencies() {

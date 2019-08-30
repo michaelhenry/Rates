@@ -19,6 +19,9 @@ class APIService {
     // And on Development Environment we provide a default value so that
     // the app will continue to work without any additional configuration,
     // ONLY if this is in a PRIVATE Repo.
+    //
+    // But for DEMO purposes, I will include this API Key
+    // And there is a chance that this will revoke in the future.
     guard let _apiKey = Bundle.main
       .object(forInfoDictionaryKey: "API_KEY") as? String else {
       return "0e95ff074fc3d9a7352cae4a4182224f"

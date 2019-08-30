@@ -16,6 +16,7 @@ class CurrenciesViewModel {
   private var isFetching:Bool = false
   
   private let api:APIService
+  private var onReloadVisibleData:(() -> Void)?
   private var onError:((Error) -> Void)?
 
   private var fetchedResultsController: NSFetchedResultsController<Currency>
@@ -31,10 +32,12 @@ class CurrenciesViewModel {
     _ type: NSFetchedResultsChangeType?,
     _ newIndexPath:IndexPath?) -> Void)? = nil,
     onDidChangeContent:(() -> Void)? = nil,
+    onReloadVisibleData:(() -> Void)?,
     onError:((Error) -> Void)? = nil) {
     
     self.api = api
     self.managedObjectContext = managedObjectContext
+    self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
     fetchResultDelegateWrapper = NSFetchedResultsControllerDelegateWrapper(
@@ -113,11 +116,11 @@ extension CurrenciesViewModel {
   /// - Parameters:
   ///   - text
   ///   - completion
-  func filter(text: String = "", completion: (() -> Void)? = nil) {
+  func filter(text: String = "") {
     fetchedResultsController.fetchRequest.predicate = NSPredicate(searchText: text)
     do {
       try fetchedResultsController.performFetch()
-      completion?()
+      onReloadVisibleData?()
     } catch {
       print("ERROR \(error)")
     }

@@ -53,6 +53,9 @@ class CurrenciesViewController:UITableViewController {
       onDidChangeContent: { [weak self] in
         self?.tableView.endUpdates()
       },
+      onReloadVisibleData: { [weak self] in
+        self?.tableView.reloadData()
+      },
       onError:  {[weak self] error in
         guard let weakSelf = self else { return }
         weakSelf.showAlert(
@@ -128,9 +131,7 @@ class CurrenciesViewController:UITableViewController {
 extension CurrenciesViewController:UISearchBarDelegate {
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    viewModel.filter(text: searchText) { [weak self] in
-      self?.tableView.reloadData()
-    }
+    viewModel.filter(text: searchText)
   }
 }
 

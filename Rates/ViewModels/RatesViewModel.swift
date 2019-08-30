@@ -17,12 +17,6 @@ class RatesViewModel {
   
   private let api:APIService
   private var onError:((Error) -> Void)?
-  private var onWillChangeContent:(() -> Void)?
-  private var onDidChangeContent:(() -> Void)?
-  private var onChange:((
-  _ indexPath:IndexPath?,
-  _ type: NSFetchedResultsChangeType,
-  _ newIndexPath:IndexPath?) -> Void)?
   private var onReloadVisibleData:(() -> Void)?
   
   private var fetchedResultsController: NSFetchedResultsController<Rate>
@@ -46,9 +40,6 @@ class RatesViewModel {
     
     self.api = api
     self.managedObjectContext = managedObjectContext
-    self.onWillChangeContent = onWillChangeContent
-    self.onDidChangeContent = onDidChangeContent
-    self.onChange = onChange
     self.onReloadVisibleData = onReloadVisibleData
     self.onError = onError
     
@@ -149,7 +140,6 @@ class RatesViewModel {
         print(error)
       }
     }
-    
   }
   
   func item(at indexPath:IndexPath) -> EquivalentRate? {
@@ -160,7 +150,7 @@ class RatesViewModel {
 
 extension RatesViewModel {
   
-  func update(referenceValue: Decimal, completion: (() -> Void)? = nil) {
+  func update(referenceValue: Decimal) {
     self.referenceValue = referenceValue
     onReloadVisibleData?()
   }
