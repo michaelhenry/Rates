@@ -132,7 +132,7 @@ class RatesViewModelTests: XCTestCase {
     }
     wait(for: [ex], timeout: 1.0)
     
-    ex = expectation(description: "wait again after 1 seconds and the hasExecuted should be TRUE")
+    ex = expectation(description: "wait again after 1 second and the hasExecuted should be TRUE")
     sleep(1)
     viewModel.fetchRates() { hasExecuted in
       XCTAssertTrue(hasExecuted)
