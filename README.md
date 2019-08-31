@@ -59,8 +59,9 @@ Please see the [RatesTests](RatesTests) target for more info.
 
 # TODO
 
-[ ] - Test cases for failing request.
+[ ] - Test cases for Failed request.
 [ ] - Localization
+[ ] - Empty State for List
 
 # Contact
 
