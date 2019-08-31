@@ -1,5 +1,7 @@
 # Rates
 
+[![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.org/michaelhenry/Rates.swift)
+
 An app that converts currency rate.
 
 ![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
