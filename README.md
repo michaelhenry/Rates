@@ -71,6 +71,7 @@ Please see the [RatesTests](RatesTests) target for more info.
 - [ ] Localization
 - [ ] Empty State for List
 - [ ] Custom Keyboard Input
+- [ ] UI Test cases
 
 # Contact
 
