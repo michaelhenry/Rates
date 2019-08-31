@@ -55,7 +55,7 @@ Please see the [RatesTests](RatesTests) target for more info.
 # Notes
 
 - The App will only execute the actual `refresh` only after 30 minutes from the last successful request to avoid reaching the rate limitation of the API.
-- Due to the limitation of the `Free API Key from [Currency Layer](https://currencylayer.com), switching the `Base Currency` other than `USD` will alert an Error message like:
+- Due to the limitation of the `Free API Key` from [Currency Layer](https://currencylayer.com), switching the `Base Currency` other than `USD` will alert an Error message like:
 
   > Access Restricted. Your current Subscription plan does not support Source Currency Switching.
 
