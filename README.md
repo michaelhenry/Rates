@@ -1,6 +1,6 @@
 # Rates
 
-[![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.org/michaelhenry/Rates.swift)
+[![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.com/michaelhenry/Rates)
 
 An app that converts currency rate.
 
@@ -10,7 +10,7 @@ An app that converts currency rate.
 
 # API
 
-This App uses api from [Currency Layer](https://currencylayer.com), Please check their [Documentation](https://currencylayer.com/documentation) for for information.
+This App uses api from [Currency Layer](https://currencylayer.com), Please check their [Documentation](https://currencylayer.com/documentation) for more information.
 
 # SETUP
 
