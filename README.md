@@ -1,6 +1,6 @@
 ![Header](screenshots/header.png)
 
-[![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.com/michaelhenry/Rates)
+[![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.com/michaelhenry/Rates) [![Version](https://img.shields.io/badge/version-1.0-black.svg?style=flat)](#)
 
 ![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
 
