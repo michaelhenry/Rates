@@ -2,7 +2,7 @@
 
 [![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.com/michaelhenry/Rates)
 
-An Currency Rate Converter App.
+A Currency Rate Converter App.
 
 ![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
 
