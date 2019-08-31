@@ -127,7 +127,7 @@ extension CurrenciesViewModel {
       try fetchedResultsController.performFetch()
       onReloadVisibleData?()
     } catch {
-      print("ERROR \(error)")
+      onError?(error)
     }
   }
 }
