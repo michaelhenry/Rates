@@ -84,9 +84,7 @@ class RatesViewModel {
       return
     }
     
-    let baseCurrencyCode:String = defaults.get(for: .baseCurrencyCode) ?? "USA"
-    
-    fetchRates(code: baseCurrencyCode) {
+    fetchRates(code: baseCurrencyCode()) {
       completion?(true)
     }
   }
@@ -202,15 +200,23 @@ class RatesViewModel {
   /// lastQuotesTimestampText()
   ///
   /// - Returns: is the `As of` timestamp from the API
-  func lastQuotesTimestampText() -> String? {
+  func lastQuotesTimestampText() -> String {
     guard let _lastUpdate:Date = defaults.get(for: .lastQuotesTimestamp)
-      else { return nil }
+      else { return "" }
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM dd yyyy HH:mm a"
-    return formatter.string(from: _lastUpdate)
+    return "As of \(formatter.string(from: _lastUpdate))"
+  }
+  
+  /// Get the Base Currency Code
+  ///
+  /// - Returns: String
+  func baseCurrencyCode() -> String {
+    return defaults.get(for: .baseCurrencyCode) ?? "USD"
   }
 }
 
+// MARK: - Other Actions
 extension RatesViewModel {
   
   func update(referenceValue: Decimal) {

@@ -93,7 +93,7 @@ class RatesViewController:UIViewController {
       target: self, action: #selector(RatesViewController.showCurrencies))
     
     // TODO: Change the Default Currency
-    currencyButton.setTitle(AppDefaults.shared.get(for: .baseCurrencyCode), for: .normal)
+    currencyButton.setTitle(viewModel.baseCurrencyCode(), for: .normal)
     currencyButton.addTarget(
       self, action: #selector(RatesViewController.updateBaseCurrency),
       for: .touchUpInside)
@@ -120,9 +120,7 @@ extension RatesViewController {
     viewModel.refresh { [weak self] _ in
       DispatchQueue.main.async {
         sender?.endRefreshing()
-        guard let lastQuotesTimestampText = self?.viewModel.lastQuotesTimestampText()
-          else { return }
-        self?.lastUpdatedLabel.text = "As of \(lastQuotesTimestampText)"
+        self?.lastUpdatedLabel.text = self?.viewModel.lastQuotesTimestampText()
       }
     }
   }

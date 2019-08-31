@@ -52,5 +52,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>CurrencyLayer</key>
+	<dict>
+		<key>APIKey</key>
+		<string>0e95ff074fc3d9a7352cae4a4182224f</string>
+	</dict>
 </dict>
 </plist>

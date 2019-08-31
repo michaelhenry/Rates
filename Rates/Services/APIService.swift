@@ -14,20 +14,22 @@ class APIService {
   private lazy var requestCaller = RequestCaller()
   private let baseUrl:URL = URL(string: "http://apilayer.net")!
   
-  private var apiKey:String {
-    // I do recommend to set the PRODUCTION API KEY via CI ENVIRONMENT Variable
+  private lazy var apiKey:String = {
+    // I do recommend to set and override the PRODUCTION API KEY
+    // via CI ENVIRONMENT Variable
     // And on Development Environment we provide a default value so that
     // the app will continue to work without any additional configuration,
     // ONLY if this is in a PRIVATE Repo.
     //
     // But for DEMO purposes, I will include this API Key
     // And there is a chance that this will revoke in the future.
-    guard let _apiKey = Bundle.main
-      .object(forInfoDictionaryKey: "API_KEY") as? String else {
-      return "0e95ff074fc3d9a7352cae4a4182224f"
+    guard let _currencyLayerConfig = Bundle.main
+      .object(forInfoDictionaryKey: "CurrencyLayer") as? [String: String],
+      let _apiKey = _currencyLayerConfig["APIKey"] else {
+      fatalError("No CurrencyLayer.APIKey found")
     }
     return _apiKey
-  }
+  }()
   
   func fetchCurrencies(completion: @escaping(Result<Currencies, RequestError>) -> Void) {
     let endpoint = "api/list"
