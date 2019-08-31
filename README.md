@@ -1,8 +1,6 @@
-# Rates
+![Header](screenshots/header.png)
 
 [![CI Status](https://img.shields.io/travis/michaelhenry/Rates.svg?style=flat)](https://travis-ci.com/michaelhenry/Rates)
-
-A Currency Rate Converter App.
 
 ![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
 
@@ -18,7 +16,7 @@ To configure the API, inside the [Info.plist](Rates/Info.plist), under `Currency
 replace `#YOUR_API_KEY` with your actual `APIkey`.
 
 Example:
-
+ 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
