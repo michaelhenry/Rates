@@ -7,14 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A64AA87D23180126008FB8C0 /* RequestMocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AA8712317FA81008FB8C0 /* RequestMocker.swift */; };
+		A64AA87F23180534008FB8C0 /* mock-resources in Resources */ = {isa = PBXBuildFile; fileRef = A64AA87E23180534008FB8C0 /* mock-resources */; };
+		A64AA881231837DE008FB8C0 /* RatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */; };
+		A655220D23178BE200852430 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220C23178BE200852430 /* RequestError.swift */; };
+		A655220F23178CB300852430 /* AlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655220E23178CB300852430 /* AlertShowable.swift */; };
+		A655221123179F0E00852430 /* ConvertedRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A655221023179F0E00852430 /* ConvertedRate.swift */; };
+		A6606DC023161B1000F25DCC /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DBF23161B1000F25DCC /* Currencies.swift */; };
+		A6606DC223161CE500F25DCC /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC123161CE500F25DCC /* Quotes.swift */; };
+		A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */; };
+		A6606DD423162AF700F25DCC /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DD023162AF700F25DCC /* Currency+CoreDataClass.swift */; };
+		A6606DD523162AF700F25DCC /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DD123162AF700F25DCC /* Currency+CoreDataProperties.swift */; };
+		A6606DD82316313500F25DCC /* CurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DD72316313500F25DCC /* CurrenciesViewController.swift */; };
+		A6606DDA2316325800F25DCC /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DD92316325800F25DCC /* NibLoadable.swift */; };
+		A6606DDC2316327B00F25DCC /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DDB2316327B00F25DCC /* Reusable.swift */; };
+		A6606DDE231632AC00F25DCC /* UITableView_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */; };
+		A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DDF231632CE00F25DCC /* Bindable.swift */; };
+		A6606DE22316331F00F25DCC /* UITableViewCell_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */; };
+		A6606DE62316334300F25DCC /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DE42316334300F25DCC /* CurrencyCell.swift */; };
+		A6606DE72316334300F25DCC /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6606DE52316334300F25DCC /* CurrencyCell.xib */; };
+		A6606DE923163CBC00F25DCC /* RequestCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DE823163CBC00F25DCC /* RequestCaller.swift */; };
+		A6606DED23164CCD00F25DCC /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DEC23164CCD00F25DCC /* RatesViewModel.swift */; };
+		A6606DEF23164E5F00F25DCC /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DEE23164E5F00F25DCC /* RatesViewController.swift */; };
+		A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF023164EBB00F25DCC /* RateCell.swift */; };
+		A6606DF323164EBB00F25DCC /* RateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6606DF123164EBB00F25DCC /* RateCell.xib */; };
+		A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */; };
+		A66194E12318E83A00535708 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66194E02318E83A00535708 /* AppDefaults.swift */; };
+		A66194E32318EA9900535708 /* AppDefaultsConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66194E22318EA9900535708 /* AppDefaultsConvertible.swift */; };
+		A66194E52318F08F00535708 /* InMemoryAppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66194E42318F08F00535708 /* InMemoryAppDefaults.swift */; };
+		A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */; };
+		A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */; };
+		A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */; };
+		A6E189DB2316E1C4009F9DCE /* Rate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */; };
 		A6F19C29231567CD00DB8B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C28231567CD00DB8B17 /* AppDelegate.swift */; };
-		A6F19C2B231567CD00DB8B17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C2A231567CD00DB8B17 /* ViewController.swift */; };
 		A6F19C2E231567CD00DB8B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C2C231567CD00DB8B17 /* Main.storyboard */; };
 		A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C2F231567CD00DB8B17 /* Rates.xcdatamodeld */; };
 		A6F19C33231567CF00DB8B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C32231567CF00DB8B17 /* Assets.xcassets */; };
 		A6F19C36231567CF00DB8B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F19C34231567CF00DB8B17 /* LaunchScreen.storyboard */; };
-		A6F19C41231567CF00DB8B17 /* RatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C40231567CF00DB8B17 /* RatesTests.swift */; };
 		A6F19C4C231567CF00DB8B17 /* RatesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C4B231567CF00DB8B17 /* RatesUITests.swift */; };
+		A6F19C66231576C300DB8B17 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F19C65231576C300DB8B17 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +66,51 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64AA8712317FA81008FB8C0 /* RequestMocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMocker.swift; sourceTree = "<group>"; };
+		A64AA87E23180534008FB8C0 /* mock-resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "mock-resources"; sourceTree = SOURCE_ROOT; };
+		A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewModelTests.swift; sourceTree = "<group>"; };
+		A655220C23178BE200852430 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		A655220E23178CB300852430 /* AlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertShowable.swift; sourceTree = "<group>"; };
+		A655221023179F0E00852430 /* ConvertedRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedRate.swift; sourceTree = "<group>"; };
+		A6606DBF23161B1000F25DCC /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
+		A6606DC123161CE500F25DCC /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesViewModel.swift; sourceTree = "<group>"; };
+		A6606DD023162AF700F25DCC /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A6606DD123162AF700F25DCC /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A6606DD72316313500F25DCC /* CurrenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesViewController.swift; sourceTree = "<group>"; };
+		A6606DD92316325800F25DCC /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		A6606DDB2316327B00F25DCC /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_Extensions.swift; sourceTree = "<group>"; };
+		A6606DDF231632CE00F25DCC /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell_Extensions.swift; sourceTree = "<group>"; };
+		A6606DE42316334300F25DCC /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		A6606DE52316334300F25DCC /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		A6606DE823163CBC00F25DCC /* RequestCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCaller.swift; sourceTree = "<group>"; };
+		A6606DEC23164CCD00F25DCC /* RatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewModel.swift; sourceTree = "<group>"; };
+		A6606DEE23164E5F00F25DCC /* RatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewController.swift; sourceTree = "<group>"; };
+		A6606DF023164EBB00F25DCC /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
+		A6606DF123164EBB00F25DCC /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
+		A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchResultControllerDelegateWrapper.swift; sourceTree = "<group>"; };
+		A66194E02318E83A00535708 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		A66194E22318EA9900535708 /* AppDefaultsConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaultsConvertible.swift; sourceTree = "<group>"; };
+		A66194E42318F08F00535708 /* InMemoryAppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryAppDefaults.swift; sourceTree = "<group>"; };
+		A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorInfo.swift; sourceTree = "<group>"; };
+		A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A6F19C25231567CD00DB8B17 /* Rates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F19C28231567CD00DB8B17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A6F19C2A231567CD00DB8B17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6F19C2D231567CD00DB8B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6F19C30231567CD00DB8B17 /* Rates.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rates.xcdatamodel; sourceTree = "<group>"; };
 		A6F19C32231567CF00DB8B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F19C35231567CF00DB8B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F19C37231567CF00DB8B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F19C3C231567CF00DB8B17 /* RatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6F19C40231567CF00DB8B17 /* RatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesTests.swift; sourceTree = "<group>"; };
 		A6F19C42231567CF00DB8B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6F19C47231567CF00DB8B17 /* RatesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F19C4B231567CF00DB8B17 /* RatesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesUITests.swift; sourceTree = "<group>"; };
 		A6F19C4D231567CF00DB8B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6F19C65231576C300DB8B17 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +138,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6606DBA23161A9200F25DCC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A6606DD92316325800F25DCC /* NibLoadable.swift */,
+				A6606DDB2316327B00F25DCC /* Reusable.swift */,
+				A6606DDF231632CE00F25DCC /* Bindable.swift */,
+				A655220E23178CB300852430 /* AlertShowable.swift */,
+				A66194E22318EA9900535708 /* AppDefaultsConvertible.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A6606DC32316277C00F25DCC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A6606DC42316278800F25DCC /* CurrenciesViewModel.swift */,
+				A6606DEC23164CCD00F25DCC /* RatesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A6606DD623162C3800F25DCC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6606DD72316313500F25DCC /* CurrenciesViewController.swift */,
+				A6606DEE23164E5F00F25DCC /* RatesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6606DE32316332D00F25DCC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6F19C2C231567CD00DB8B17 /* Main.storyboard */,
+				A6606DE42316334300F25DCC /* CurrencyCell.swift */,
+				A6606DE52316334300F25DCC /* CurrencyCell.xib */,
+				A6606DF023164EBB00F25DCC /* RateCell.swift */,
+				A6606DF123164EBB00F25DCC /* RateCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6606DFA23167CA800F25DCC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A6F19C2F231567CD00DB8B17 /* Rates.xcdatamodeld */,
+				A6E189D82316E1C4009F9DCE /* Rate+CoreDataClass.swift */,
+				A6E189D92316E1C4009F9DCE /* Rate+CoreDataProperties.swift */,
+				A6606DD023162AF700F25DCC /* Currency+CoreDataClass.swift */,
+				A6606DD123162AF700F25DCC /* Currency+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A66194E62318F0BC00535708 /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				A64AA8712317FA81008FB8C0 /* RequestMocker.swift */,
+				A66194E42318F08F00535708 /* InMemoryAppDefaults.swift */,
+			);
+			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		A6E189CD2315A554009F9DCE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A6606DDD231632AC00F25DCC /* UITableView_Extensions.swift */,
+				A6606DE12316331F00F25DCC /* UITableViewCell_Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A6F19C1C231567CD00DB8B17 = {
 			isa = PBXGroup;
 			children = (
@@ -100,12 +234,16 @@
 			isa = PBXGroup;
 			children = (
 				A6F19C28231567CD00DB8B17 /* AppDelegate.swift */,
-				A6F19C2A231567CD00DB8B17 /* ViewController.swift */,
-				A6F19C2C231567CD00DB8B17 /* Main.storyboard */,
+				A6E189CD2315A554009F9DCE /* Extensions */,
+				A6F19C5C23156AE000DB8B17 /* Models */,
+				A6606DBA23161A9200F25DCC /* Protocols */,
+				A6F19C5923156A8600DB8B17 /* Services */,
+				A6606DD623162C3800F25DCC /* ViewControllers */,
+				A6606DE32316332D00F25DCC /* Views */,
+				A6606DC32316277C00F25DCC /* ViewModels */,
 				A6F19C32231567CF00DB8B17 /* Assets.xcassets */,
 				A6F19C34231567CF00DB8B17 /* LaunchScreen.storyboard */,
 				A6F19C37231567CF00DB8B17 /* Info.plist */,
-				A6F19C2F231567CD00DB8B17 /* Rates.xcdatamodeld */,
 			);
 			path = Rates;
 			sourceTree = "<group>";
@@ -113,8 +251,11 @@
 		A6F19C3F231567CF00DB8B17 /* RatesTests */ = {
 			isa = PBXGroup;
 			children = (
-				A6F19C40231567CF00DB8B17 /* RatesTests.swift */,
+				A64AA87E23180534008FB8C0 /* mock-resources */,
+				A66194E62318F0BC00535708 /* TestHelpers */,
 				A6F19C42231567CF00DB8B17 /* Info.plist */,
+				A6E189D02315B0F6009F9DCE /* APIServiceTests.swift */,
+				A64AA880231837DE008FB8C0 /* RatesViewModelTests.swift */,
 			);
 			path = RatesTests;
 			sourceTree = "<group>";
@@ -126,6 +267,30 @@
 				A6F19C4D231567CF00DB8B17 /* Info.plist */,
 			);
 			path = RatesUITests;
+			sourceTree = "<group>";
+		};
+		A6F19C5923156A8600DB8B17 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A6F19C65231576C300DB8B17 /* APIService.swift */,
+				A6606DE823163CBC00F25DCC /* RequestCaller.swift */,
+				A6606DF42316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift */,
+				A66194E02318E83A00535708 /* AppDefaults.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A6F19C5C23156AE000DB8B17 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6606DFA23167CA800F25DCC /* CoreData */,
+				A6DCB3FD23158D3500FAF71F /* ErrorInfo.swift */,
+				A6606DBF23161B1000F25DCC /* Currencies.swift */,
+				A6606DC123161CE500F25DCC /* Quotes.swift */,
+				A655220C23178BE200852430 /* RequestError.swift */,
+				A655221023179F0E00852430 /* ConvertedRate.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +397,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6606DF323164EBB00F25DCC /* RateCell.xib in Resources */,
+				A6606DE72316334300F25DCC /* CurrencyCell.xib in Resources */,
 				A6F19C36231567CF00DB8B17 /* LaunchScreen.storyboard in Resources */,
 				A6F19C33231567CF00DB8B17 /* Assets.xcassets in Resources */,
 				A6F19C2E231567CD00DB8B17 /* Main.storyboard in Resources */,
@@ -242,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64AA87F23180534008FB8C0 /* mock-resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +427,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6F19C2B231567CD00DB8B17 /* ViewController.swift in Sources */,
+				A6606DDC2316327B00F25DCC /* Reusable.swift in Sources */,
+				A655221123179F0E00852430 /* ConvertedRate.swift in Sources */,
+				A6606DF223164EBB00F25DCC /* RateCell.swift in Sources */,
+				A6606DD82316313500F25DCC /* CurrenciesViewController.swift in Sources */,
+				A6606DE0231632CE00F25DCC /* Bindable.swift in Sources */,
+				A6606DC023161B1000F25DCC /* Currencies.swift in Sources */,
+				A6606DDE231632AC00F25DCC /* UITableView_Extensions.swift in Sources */,
+				A6606DF52316777D00F25DCC /* NSFetchResultControllerDelegateWrapper.swift in Sources */,
+				A6606DE923163CBC00F25DCC /* RequestCaller.swift in Sources */,
+				A6E189DA2316E1C4009F9DCE /* Rate+CoreDataClass.swift in Sources */,
+				A6606DC223161CE500F25DCC /* Quotes.swift in Sources */,
+				A655220F23178CB300852430 /* AlertShowable.swift in Sources */,
+				A6DCB3FE23158D3500FAF71F /* ErrorInfo.swift in Sources */,
+				A6606DEF23164E5F00F25DCC /* RatesViewController.swift in Sources */,
+				A6606DD423162AF700F25DCC /* Currency+CoreDataClass.swift in Sources */,
+				A6606DDA2316325800F25DCC /* NibLoadable.swift in Sources */,
 				A6F19C31231567CD00DB8B17 /* Rates.xcdatamodeld in Sources */,
+				A6606DC52316278800F25DCC /* CurrenciesViewModel.swift in Sources */,
+				A6F19C66231576C300DB8B17 /* APIService.swift in Sources */,
 				A6F19C29231567CD00DB8B17 /* AppDelegate.swift in Sources */,
+				A66194E12318E83A00535708 /* AppDefaults.swift in Sources */,
+				A6606DD523162AF700F25DCC /* Currency+CoreDataProperties.swift in Sources */,
+				A6606DE62316334300F25DCC /* CurrencyCell.swift in Sources */,
+				A655220D23178BE200852430 /* RequestError.swift in Sources */,
+				A6606DE22316331F00F25DCC /* UITableViewCell_Extensions.swift in Sources */,
+				A6606DED23164CCD00F25DCC /* RatesViewModel.swift in Sources */,
+				A6E189DB2316E1C4009F9DCE /* Rate+CoreDataProperties.swift in Sources */,
+				A66194E32318EA9900535708 /* AppDefaultsConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +462,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6F19C41231567CF00DB8B17 /* RatesTests.swift in Sources */,
+				A6E189D12315B0F6009F9DCE /* APIServiceTests.swift in Sources */,
+				A66194E52318F08F00535708 /* InMemoryAppDefaults.swift in Sources */,
+				A64AA881231837DE008FB8C0 /* RatesViewModelTests.swift in Sources */,
+				A64AA87D23180126008FB8C0 /* RequestMocker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +634,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Rates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Rates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
