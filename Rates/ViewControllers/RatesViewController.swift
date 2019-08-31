@@ -187,7 +187,7 @@ extension RatesViewController:CurrenciesViewControllerDelegate {
   func currenciesVC(_ currenciesVC: CurrenciesViewController, didSelect currency: Currency) {
     guard let _code = currency.code, let action = currenciesVC.action else { return }
  
-    currenciesVC.dismiss(animated: true) {[weak self] in
+    currenciesVC.navigationController?.dismiss(animated: true) {[weak self] in
       switch action {
       case .addNewCurrency:
         self?.viewModel.activate(code: _code)
