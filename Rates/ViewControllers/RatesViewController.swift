@@ -92,8 +92,10 @@ class RatesViewController:UIViewController {
       barButtonSystemItem: .add,
       target: self, action: #selector(RatesViewController.showCurrencies))
     
-    // TODO: Change the Default Currency
     currencyButton.setTitle(viewModel.baseCurrencyCode(), for: .normal)
+    currencyButton.layer.cornerRadius = 10.0
+    currencyButton.layer.borderWidth = 1.0
+    currencyButton.layer.borderColor = UIColor.black.cgColor
     currencyButton.addTarget(
       self, action: #selector(RatesViewController.updateBaseCurrency),
       for: .touchUpInside)

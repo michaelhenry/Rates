@@ -27,13 +27,25 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-VM-niT">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="80"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-NM-2Ln">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdE-63-WSM">
                                                         <rect key="frame" x="0.0" y="0.0" width="182" height="80"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                        <state key="normal" title="USD">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKZ-NM-2Ln">
+                                                                <rect key="frame" x="10" y="10" width="162" height="60"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                                <state key="normal" title="USD">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="dKZ-NM-2Ln" secondAttribute="trailing" constant="10" id="ObQ-Pa-37d"/>
+                                                            <constraint firstItem="dKZ-NM-2Ln" firstAttribute="leading" secondItem="sdE-63-WSM" secondAttribute="leading" constant="10" id="SV6-Sf-lG6"/>
+                                                            <constraint firstItem="dKZ-NM-2Ln" firstAttribute="top" secondItem="sdE-63-WSM" secondAttribute="top" constant="10" id="gWe-ND-4Zn"/>
+                                                            <constraint firstAttribute="bottom" secondItem="dKZ-NM-2Ln" secondAttribute="bottom" constant="10" id="x3D-oS-JPU"/>
+                                                        </constraints>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="518-pV-xD0">
                                                         <rect key="frame" x="192" y="0.0" width="182" height="80"/>
                                                         <subviews>
@@ -58,7 +70,7 @@
                                                                     <constraint firstAttribute="height" constant="5" id="XtV-3g-B0C"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: Mon 12, 2021" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R17-gP-qvp">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: Mon 12, 2021" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R17-gP-qvp">
                                                                 <rect key="frame" x="0.0" y="63" width="182" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                                 <nil key="textColor"/>
