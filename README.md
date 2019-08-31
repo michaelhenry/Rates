@@ -67,7 +67,7 @@ Please see the [RatesTests](RatesTests) target for more info.
 
 - [ ] Test cases for Failed request.
 - [ ] Localization
-- [ ]Empty State for List
+- [ ] Empty State for List
 - [ ] Custom Keyboard Input
 
 # Contact
