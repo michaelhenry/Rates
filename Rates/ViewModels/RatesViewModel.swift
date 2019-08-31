@@ -27,6 +27,7 @@ class RatesViewModel {
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
   private var referenceValue:Decimal = 1.0
+  private let defaultCurrencies = ["JPY"]
   
   init(
     api:APIService,
@@ -100,6 +101,9 @@ class RatesViewModel {
       switch result {
       case .success(let value):
    
+        // Let's check if it has previous data, so we can add a default value if none.
+        let needToAddDefaultCurrencyList = weakSelf.defaults.get(for: .lastQuotesTimestamp) == nil
+        
         // Must set to value.timestamp for the lastQuotesTimestamp
         weakSelf.defaults.set(value: value.timestamp, for: .lastQuotesTimestamp)
       
@@ -114,8 +118,12 @@ class RatesViewModel {
               let r = Rate(context: context)
               // code will be like Source-Target like `USDGBP`
               // so let's clean the data before saving to our database since we only support 1 base currency conversion at a time
+              let currencyCode = String($0.key.suffix(3))
               r.currencyCode = String($0.key.suffix(3))
-              r.value = NSDecimalNumber(floatLiteral: $0.value) 
+              r.value = NSDecimalNumber(floatLiteral: $0.value)
+              if needToAddDefaultCurrencyList, weakSelf.defaultCurrencies.contains(currencyCode) {
+                  r.active = true
+              }
             }
             try context.save()
           } catch {
