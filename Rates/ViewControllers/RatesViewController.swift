@@ -101,7 +101,7 @@ class RatesViewController:UIViewController {
       for: .touchUpInside)
     
     inputField.text = "1.00"
-    inputField.keyboardType = .numbersAndPunctuation
+    inputField.keyboardType = .decimalPad
     inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
     
     // TODO: Must be better if we have custom inputView Keyboard.
