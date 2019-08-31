@@ -2,6 +2,10 @@
 
 An app that converts currency rate.
 
+![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
+
+![Listing](screenshots/listing.png) ![Refreshing](screenshots/refreshing.png) ![Select Base Currency](screenshots/select-base-currency.png) ![Add New Currency](screenshots/add-new-currency.png)
+
 # API
 
 This App uses api from [Currency Layer](https://currencylayer.com), Please check their [Documentation](https://currencylayer.com/documentation) for for information.
@@ -54,6 +58,8 @@ Please see the [RatesTests](RatesTests) target for more info.
 - Due to the limitation of the `Free API Key from [Currency Layer](https://currencylayer.com), switching the `Base Currency` other than `USD` will alert an Error message like:
 
   > Access Restricted. Your current Subscription plan does not support Source Currency Switching.
+
+	![Rate Limit Error](screenshots/error.png)
 
   And to solve this issue, you have to subscribed to their [Paid Service](https://currencylayer.com/product).
 
