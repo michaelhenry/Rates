@@ -4,7 +4,7 @@
 
 ![Rates 2](screenshots/rates2.gif) ![Rates 1](screenshots/rates1.gif)
 
-![Listing](screenshots/listing.png) ![Refreshing](screenshots/refreshing.png) ![Select Base Currency](screenshots/select-base-currency.png) ![Add New Currency](screenshots/add-new-currency.png)
+![Listing](screenshots/listing.png) ![Refreshing](screenshots/refreshing.png) ![Delete](screenshots/delete.png) ![Select Base Currency](screenshots/select-base-currency.png) ![Add New Currency](screenshots/add-new-currency.png)
 
 # API
 
