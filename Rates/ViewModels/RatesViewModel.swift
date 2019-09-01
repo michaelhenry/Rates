@@ -90,6 +90,11 @@ class RatesViewModel {
     }
   }
   
+  /// Fetch The Rate of certain code.
+  ///
+  /// - Parameters:
+  ///   - code
+  ///   - completion
   func fetchRates(code:String, _ completion: (() -> Void)? = nil) {
   
     if isFetching { return }
@@ -158,11 +163,20 @@ class RatesViewModel {
     return 1
   }
   
+  /// The Rate at indexPath.
+  ///
+  /// - Parameter indexPath
+  /// - Returns Rate
   func rate(at indexPath:IndexPath) -> Rate? {
     let result:NSFetchRequestResult = fetchedResultsController.object(at: indexPath)
     return result as? Rate
   }
   
+  /// Delete an item from your listing.
+  ///
+  /// - Parameters:
+  ///   - indexPath:
+  ///   - completion:
   func delete(at indexPath:IndexPath, completion: (() -> Void)? = nil) {
     let result:NSFetchRequestResult = fetchedResultsController.object(at: indexPath)
     managedObjectContext.perform { [weak self] in
@@ -180,6 +194,11 @@ class RatesViewModel {
     }
   }
   
+  /// Activate a certain currency that will display to your listing.
+  ///
+  /// - Parameters:
+  ///   - code:
+  ///   - completion:
   func activate(code:String, completion: (() -> Void)? = nil) {
     managedObjectContext.perform { [weak self] in
       do {
@@ -200,6 +219,10 @@ class RatesViewModel {
     }
   }
   
+  /// Get the Equivalent Rate of the Base Currency in other currencies.
+  ///
+  /// - Parameter indexPath
+  /// - Returns: EquivalentRate?
   func item(at indexPath:IndexPath) -> EquivalentRate? {
     guard let obj = rate(at: indexPath) else { return nil }
     return obj.equivalentRate(at: NSDecimalNumber(decimal: referenceValue))
@@ -227,12 +250,20 @@ class RatesViewModel {
 // MARK: - Other Actions
 extension RatesViewModel {
   
+  /// Update the Reference value (of the Base currency)
+  ///
+  /// - Parameter referenceValue
   func update(referenceValue: Decimal) {
     self.referenceValue = referenceValue
+    // No need to hit the server we just have to update the visible data.
     onReloadVisibleData?()
   }
   
+  /// Update the Base Currency Code
+  ///
+  /// - Parameter baseCurrencyCode
   func update(baseCurrencyCode: String) {
+    // Need to update the data from server,
     fetchRates(code: baseCurrencyCode)
   }
 }
