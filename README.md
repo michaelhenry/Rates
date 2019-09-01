@@ -42,7 +42,7 @@ Example:
 endpoint: `/api/list`
 
 ```yml
-- mock-responses:
+- mock-resources:
   - api:
     - list:
 ```
@@ -51,6 +51,8 @@ endpoint: `/api/list`
 
 
 Please see the [RatesTests](RatesTests) target for more info.
+
+Test results can also be viewed from [Travis CI - Rates](https://travis-ci.com/michaelhenry/Rates)
 
 # Notes
 
@@ -70,6 +72,7 @@ Please see the [RatesTests](RatesTests) target for more info.
 - [ ] Empty State for List
 - [ ] Custom Keyboard Input
 - [ ] UI Test cases
+- [ ] Additional tests for different iOS and Device version.
 
 # Contact
 
