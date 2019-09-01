@@ -36,7 +36,7 @@ Example:
 
 This project uses the concept of mocking the request to avoid the hitting the server while still using the actual `API` request calls. All requests from the [APIService](Rates/Services/APIService.swift) are all hijacked and replaced  with the mock ones.
 
-You can see all the response of the hijacked request can be found on [mock-responses](mock-responses) for more info. The `Path` and `File` under [mock-responses](mock-responses) represents the `Actual Endpoint` of the `Request`
+You can see all the response of the hijacked request can be found on [mock-resources/api](/mock-resources/api) for more info. The `Path` and `File` under [mock-resources](/mock-resources) folder represents the `Actual Endpoint` of the `Request`
 
 Example:
 endpoint: `/api/list`
@@ -73,5 +73,5 @@ Please see the [RatesTests](RatesTests) target for more info.
 
 # Contact
 
-Fore mor informationm, please contact me@iamkel.net
+Fore more information, please contact me@iamkel.net
 
