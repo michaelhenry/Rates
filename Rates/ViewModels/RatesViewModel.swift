@@ -29,6 +29,8 @@ class RatesViewModel {
   private var referenceValue:Decimal = 1.0
   private let defaultCurrencies = ["JPY"]
   
+  private var lastTriedCodeToExecute:String? = nil // For retry()
+  
   init(
     api:APIService,
     managedObjectContext:NSManagedObjectContext,
@@ -90,6 +92,12 @@ class RatesViewModel {
     }
   }
   
+  /// Retry to fetchRates request()
+  func retry() {
+    guard let code = lastTriedCodeToExecute else { return }
+    fetchRates(code: code)
+  }
+  
   /// Fetch The Rate of certain code.
   ///
   /// - Parameters:
@@ -99,13 +107,16 @@ class RatesViewModel {
   
     if isFetching { return }
     isFetching = true
-    
+    lastTriedCodeToExecute = code
     api.fetchLive(source: code) {[weak self] (result) in
       guard let weakSelf = self else { return }
       
       switch result {
       case .success(let value):
-   
+        
+        // Delete the lastTriedCode, since we don't need to retry() the request.
+        weakSelf.lastTriedCodeToExecute = nil
+        
         // Let's check if it has previous data, so we can add a default value if none.
         let needToAddDefaultCurrencyList = weakSelf.defaults.get(for: .lastQuotesTimestamp) == nil
         

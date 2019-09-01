@@ -64,7 +64,7 @@ class RatesViewController:UIViewController {
                 title: "Retry",
                 style: .default,
                 handler: { (action) in
-                  weakSelf.viewModel.refresh()
+                  weakSelf.viewModel.retry()
               }),
             ])
     })
