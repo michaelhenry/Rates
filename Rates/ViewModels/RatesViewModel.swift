@@ -19,6 +19,7 @@ class RatesViewModel {
   private let api:APIService
   private var onError:((Error) -> Void)?
   private var onReloadVisibleData:(() -> Void)?
+  private var onDidReceiveUpdatedData:(() -> Void)?
   
   private var fetchedResultsController: NSFetchedResultsController<Rate>
   private let managedObjectContext:NSManagedObjectContext
@@ -27,7 +28,7 @@ class RatesViewModel {
   private var fetchResultDelegateWrapper:NSFetchedResultsControllerDelegateWrapper
   
   private var referenceValue:Decimal = 1.0
-  private let defaultCurrencies = ["JPY"]
+  private let defaultCurrencies = ["JPY", "AUD", "EUR", "NZD", "SGD"]
   
   private var lastTriedCodeToExecute:String? = nil // For retry()
   
@@ -36,6 +37,7 @@ class RatesViewModel {
     managedObjectContext:NSManagedObjectContext,
     defaults:AppDefaultsConvertible,
     newRequestWaitingTime:Double = 30 * 60, // Default is 30 Minutes
+    onDidReceiveUpdatedData:(() -> Void)? = nil, // Data comes from server
     onWillChangeContent:(() -> Void)? = nil,
     onChange:((
     _ indexPath:IndexPath?,
@@ -50,6 +52,7 @@ class RatesViewModel {
     self.defaults = defaults
     self.newRequestWaitingTime = newRequestWaitingTime
     self.onReloadVisibleData = onReloadVisibleData
+    self.onDidReceiveUpdatedData = onDidReceiveUpdatedData
     self.onError = onError
     
     fetchResultDelegateWrapper = NSFetchedResultsControllerDelegateWrapper(
@@ -88,7 +91,9 @@ class RatesViewModel {
     }
     
     fetchRates(code: baseCurrencyCode()) {
-      completion?(true)
+      DispatchQueue.main.async {
+        completion?(true)
+      }
     }
   }
   
@@ -125,16 +130,22 @@ class RatesViewModel {
       
         // Let's set the actual base currency now, since we finally get a valid one.
         weakSelf.defaults.set(value: value.source, for: .baseCurrencyCode)
+        if let onDidReceiveUpdatedData = weakSelf.onDidReceiveUpdatedData {
+          DispatchQueue.main.async {
+            onDidReceiveUpdatedData()
+          }
+        }
         
         let context = weakSelf.managedObjectContext
+  
         context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         context.perform {
           do {
             value.quotes.forEach {
-              let r = Rate(context: context)
+              let currencyCode = String($0.key.suffix(3))
+              let r = Rate.findOrCreate(currencyCode: currencyCode, in: context)
               // code will be like Source-Target like `USDGBP`
               // so let's clean the data before saving to our database since we only support 1 base currency conversion at a time
-              let currencyCode = String($0.key.suffix(3))
               r.currencyCode = String($0.key.suffix(3))
               r.value = NSDecimalNumber(floatLiteral: $0.value)
               if needToAddDefaultCurrencyList, weakSelf.defaultCurrencies.contains(currencyCode) {
@@ -213,12 +224,11 @@ class RatesViewModel {
   func activate(code:String, completion: (() -> Void)? = nil) {
     managedObjectContext.perform { [weak self] in
       do {
-        let fetchRequest:NSFetchRequest<Rate> = Rate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "currencyCode = %@", code)
-        fetchRequest.fetchLimit = 1
-        let result = try self?.managedObjectContext.fetch(fetchRequest)
-        result?.first?.active = true
-        try self?.managedObjectContext.save()
+        guard let context = self?.managedObjectContext,
+          let rate = Rate.find(currencyCode: code, in: context)
+          else { return }
+        rate.active = true
+        try context.save()
         completion?()
       } catch {
         if let onError = self?.onError {

@@ -75,7 +75,7 @@ class CurrenciesViewModel {
         context.perform {
           do {
             value.currencies.forEach {
-              let c = Currency(context: context)
+              let c = Currency(ctx: context)
               c.code = $0.key
               c.name = $0.value
             }

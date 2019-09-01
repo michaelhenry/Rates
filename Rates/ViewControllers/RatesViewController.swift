@@ -24,6 +24,10 @@ class RatesViewController:UIViewController {
       api: APIService.shared,
       managedObjectContext: appDelegate.persistentContainer.viewContext,
       defaults: AppDefaults.shared,
+      onDidReceiveUpdatedData: {[weak self] in
+        self?.currencyButton.setTitle(self?.viewModel.baseCurrencyCode(), for: .normal)
+        self?.lastUpdatedLabel.text = self?.viewModel.lastQuotesTimestampText()
+      },
       onWillChangeContent: { [weak self] in
         self?.tableView.beginUpdates()
       },
@@ -103,9 +107,7 @@ class RatesViewController:UIViewController {
     inputField.text = "1.00"
     inputField.keyboardType = .decimalPad
     inputField.addTarget(self, action: #selector(RatesViewController.textFieldDidChange(_:)), for: .editingChanged)
-    
-    // TODO: Must be better if we have custom inputView Keyboard.
-    
+
     refresh()
   }
 }
@@ -119,11 +121,8 @@ extension RatesViewController {
   }
   
   @objc func refresh(_ sender: UIRefreshControl? = nil) {
-    viewModel.refresh { [weak self] _ in
-      DispatchQueue.main.async {
-        sender?.endRefreshing()
-        self?.lastUpdatedLabel.text = self?.viewModel.lastQuotesTimestampText()
-      }
+    viewModel.refresh() { _ in
+      sender?.endRefreshing()
     }
   }
   
