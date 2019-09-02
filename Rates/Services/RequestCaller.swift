@@ -20,6 +20,12 @@ class RequestCaller {
     
     let task = urlSession.dataTask(with: request) { [weak self] (data, response, error) in
       guard let weakSelf = self else { return }
+      // Check if the request was reachable.
+      guard let httpResponse = response as? HTTPURLResponse,
+        httpResponse.statusCode != 0 else {
+          completion(Result.failure(.unreachable))
+          return
+      }
       guard let responseData = data else {
         fatalError("""
                   We're expecting a data to decode.
