@@ -11,6 +11,7 @@ import Foundation
 enum RequestError:Error, CustomStringConvertible {
   case responseError(ErrorDetail)
   case unknownError(String)
+  case unreachable
   
   var description: String {
     switch self {
@@ -18,6 +19,8 @@ enum RequestError:Error, CustomStringConvertible {
       return detail.info
     case .unknownError(let msg):
       return msg
+    case .unreachable:
+      return "Please check your internet connection."
     }
   }
 }
