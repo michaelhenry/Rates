@@ -73,6 +73,7 @@ Test results can also be viewed from [Travis CI - Rates](https://travis-ci.com/m
 - [ ] Custom Keyboard Input
 - [ ] UI Test cases
 - [ ] Additional tests for different iOS and Device version.
+- [ ] Reacheability.
 
 # Contact
 
