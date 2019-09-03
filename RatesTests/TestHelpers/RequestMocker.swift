@@ -22,11 +22,11 @@ class RequestMocker:URLProtocol {
       let mockUrl = urlOfFile(endpoint: path),
       let mockData = try? Data(contentsOf: mockUrl) else { return }
     
-    let urlResponse = URLResponse(
+    let urlResponse = HTTPURLResponse(
       url: request.url!,
-      mimeType: "application/json",
-      expectedContentLength: mockData.count,
-      textEncodingName: "utf-8")
+      statusCode: 200, // TODO: Assume only Success for now,since we only fetch data for now. BUT this must be changed.
+      httpVersion: nil,
+      headerFields: nil)!
     
     client?.urlProtocol(self, didReceive: urlResponse, cacheStoragePolicy: .notAllowed)
     client?.urlProtocol(self, didLoad: mockData)
