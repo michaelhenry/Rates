@@ -92,7 +92,7 @@ class RatesViewModelTests: XCTestCase {
     viewModel.update(referenceValue: 1.00)
     conversionRate = viewModel.item(at: indexPath(for: 1))
     XCTAssertEqual(conversionRate?.currencyCode, "ZWL")
-    XCTAssertEqual(conversionRate?.value, 322.000001)
+    XCTAssertEqual(conversionRate?.value, 3221.000001)
     
     // DELETE RATE AT INDEX 0, WHICH IS JPY (BECAUSE CODE SORTED ALPHABETICALLY)
     ex = expectation(description: "expect to delete a code from list")
