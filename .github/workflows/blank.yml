@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Test
+      run: |
+        set -eo pipefail
+        xcodebuild test -enableCodeCoverage YES -project Rates.xcodeproj -scheme Rates \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone Xʀ' | xcpretty
